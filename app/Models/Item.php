@@ -8,6 +8,22 @@ use Illuminate\Database\Eloquent\Builder;
 class Item extends Model
 {
 
+  public $visible = [
+          'id',
+          'upc_ean_isbn',
+          'name',
+          'description',
+          'avatar',
+          'cost_price',
+          'selling_price',
+          'quantity',
+          'is_item_kit',
+          'is_stockeable',
+          'reorder_level',
+          'receiving_quantity',
+          'category_id'
+      ];
+
   public $fillable = [
       'upc_ean_isbn',
       'name',

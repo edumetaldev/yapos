@@ -1,8 +1,9 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace yapos2\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use yapos2\Http\Controllers\Controller;
 use yapos2\Models\Item;
 
 class ItemController extends Controller
@@ -14,8 +15,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items =  item::all();
-        return view('items.index',compact('items'));
+      return item::select(['id','upc_ean_isbn','name','description','selling_price'])->get();
     }
 
     /**
@@ -25,8 +25,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        $item = new item();
-        return view('items.create',compact('item'));
+        //
     }
 
     /**
@@ -37,9 +36,7 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $item = item::create($input);
-        return redirect('/items');
+        //
     }
 
     /**
@@ -61,13 +58,7 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-      $item = item::findOrFail($id);
-
-      if (empty($item)) {
-          return redirect(route('items.index'));
-      }
-
-      return view('items.edit')->with('item', $item);
+        //
     }
 
     /**
@@ -79,16 +70,7 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $item = item::findOrFail($id);
-
-      if (empty($item)) {
-
-          return redirect(route('items.index'));
-      }
-
-      $item = $item->update($request->all(), ['id' => $id]);
-
-      return redirect(route('items.index'));
+        //
     }
 
     /**
@@ -99,15 +81,6 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-
-      $item = item::findOrFail($id);
-
-      if (empty($item)) {
-        return redirect(route('items.index'));
-      }
-
-      $item->delete($id);
-
-      return redirect(route('items.index'));
+        //
     }
 }

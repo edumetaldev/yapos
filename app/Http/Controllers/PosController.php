@@ -3,9 +3,10 @@
 namespace yapos2\Http\Controllers;
 
 use Illuminate\Http\Request;
-use yapos2\Models\Item;
+use yapos2\Models\saleitem;
+use yapos2\Models\sale;
 
-class ItemController extends Controller
+class PosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items =  item::all();
-        return view('items.index',compact('items'));
+        return view('pos.index');
     }
 
     /**
@@ -25,8 +25,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        $item = new item();
-        return view('items.create',compact('item'));
+        //
     }
 
     /**
@@ -37,9 +36,25 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $item = item::create($input);
-        return redirect('/items');
+        $items = $request->input();
+
+        $sale = new sale();
+        $sale->amount = 0;
+        $sale->save();
+        $total = 0;
+    		for($i=0; $i < count($items)-1; $i++){
+    			$saleitem = new saleitem();
+    			$saleitem->item_id = $items['id'][$i];
+    			$saleitem->sale_id = $sale->id;
+          $saleitem->quantity = $items['quantity'][$i];
+          $saleitem->price = $items['price'][$i];
+          $saleitem->subtotal = $items['price'][$i] * $items['quantity'][$i];
+          $total += $saleitem->subtotal;
+        	$saleitem->save();
+    		}
+        $sale->amount = $total;
+        $sale->save();
+        return redirect('pos');
     }
 
     /**
@@ -61,13 +76,7 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-      $item = item::findOrFail($id);
-
-      if (empty($item)) {
-          return redirect(route('items.index'));
-      }
-
-      return view('items.edit')->with('item', $item);
+        //
     }
 
     /**
@@ -79,16 +88,7 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $item = item::findOrFail($id);
-
-      if (empty($item)) {
-
-          return redirect(route('items.index'));
-      }
-
-      $item = $item->update($request->all(), ['id' => $id]);
-
-      return redirect(route('items.index'));
+        //
     }
 
     /**
@@ -99,15 +99,6 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-
-      $item = item::findOrFail($id);
-
-      if (empty($item)) {
-        return redirect(route('items.index'));
-      }
-
-      $item->delete($id);
-
-      return redirect(route('items.index'));
+        //
     }
 }

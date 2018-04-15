@@ -18,7 +18,7 @@ $factory->define(yapos2\Models\Item::class, function ( Faker $faker) {
     return [
         'upc_ean_isbn' => $faker->isbn13,
         'name' => $faker->numerify('ITEM######'),
-        'description' => $faker->word,
+        'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
         'avatar' => 'no-photo.png',
     		'cost_price' => $faker->numberBetween(1,100),
     		'selling_price' => $faker->numberBetween(100,500),

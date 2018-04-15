@@ -45,9 +45,9 @@
     <label for="is_item_kit">Is Item Kit:</label>
     <label class="checkbox-inline">
       <label for="is_item_kit">Yes:</label>
-      <input type="radio" name="is_item_kit" id="is_item_kit" value="1" {{ old('name',(isset($item->is_item_kit) ? $item->is_item_kit: '')) }} />
+      <input type="radio" name="is_item_kit" id="is_item_kit" value="1" {{ (isset($item->is_item_kit) && $item->is_item_kit == 1)  ? "checked": "" }} />
       <label for="is_item_kit">No:</label>
-      <input type="radio" name="is_item_kit" id="is_item_kit" value="0" />
+      <input type="radio" name="is_item_kit" id="is_item_kit" value="0" {{ (isset($item->is_item_kit) && $item->is_item_kit == 0)  ? "checked": '' }}/>
     </label>
 </div>
 
@@ -56,22 +56,28 @@
   <label for="is_stockeable">Stock Type:</label>
   <label class="checkbox-inline">
       <label for="is_stockeable">Stockeable:</label>
-      <input type="radio" name="is_stockeable" id="is_stockeable" value="1" />
-      <label for="is_stockeable">Unstockeable:</label>
-      <input type="radio" name="is_stockeable" id="is_stockeable" value="0" />
+      @isset ($item)
+        <input type="radio" name="is_stockeable" id="is_stockeable" value="1" {{ $item->is_stockeable == 1 ? "checked": '' }} />
+        <label for="is_stockeable">Unstockeable:</label>
+        <input type="radio" name="is_stockeable" id="is_stockeable" value="0" {{ $item->is_stockeable == 0 ? "checked": '' }}/>
+      @else
+        <input type="radio" name="is_stockeable" id="is_stockeable" value="1" />
+        <label for="is_stockeable">Unstockeable:</label>
+        <input type="radio" name="is_stockeable" id="is_stockeable" value="0" />
+      @endisset
   </label>
 </div>
 
 <!-- Reorder Level Field -->
 <div class="form-group col-sm-4">
   <label for="reorder_level">reorder_level:</label>
-  <input type="number" name="reorder_level" id="reorder_level" class="form-control" />
+  <input type="number" name="reorder_level" id="reorder_level" class="form-control" value="{{old('reorder_level',$item->reorder_level)}}"/>
 </div>
 
 <!-- Receiving Quantity Field -->
 <div class="form-group col-sm-4">
   <label for="receiving_quantity">receiving_quantity:</label>
-  <input type="number" name="receiving_quantity" id="receiving_quantity" class="form-control" />
+  <input type="number" name="receiving_quantity" id="receiving_quantity" class="form-control" value="{{old('receiving_quantity',$item->receiving_quantity)}}"/>
 </div>
 
 <!-- Submit Field -->
