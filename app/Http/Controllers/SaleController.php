@@ -3,9 +3,9 @@
 namespace yapos2\Http\Controllers;
 
 use Illuminate\Http\Request;
-use yapos2\Models\Item;
+use yapos2\Models\Sale;
 
-class ItemController extends Controller
+class SaleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items =  Item::all();
-        return view('items.index',compact('items'));
+        $sales = Sale::with('customer')->get();
+        return view('sales.index',compact('sales'));
     }
 
     /**
@@ -25,8 +25,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        $item = new Item();
-        return view('items.create',compact('item'));
+        //
     }
 
     /**
@@ -37,9 +36,7 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $item = Item::create($input);
-        return redirect('/items');
+        //
     }
 
     /**
@@ -50,7 +47,8 @@ class ItemController extends Controller
      */
     public function show($id)
     {
-        //
+      $sale = Sale::find($id);
+      return view('sales.show',compact('sale'));
     }
 
     /**
@@ -61,13 +59,7 @@ class ItemController extends Controller
      */
     public function edit($id)
     {
-      $item = Item::findOrFail($id);
-
-      if (empty($item)) {
-          return redirect(route('items.index'));
-      }
-
-      return view('items.edit')->with('item', $item);
+        //
     }
 
     /**
@@ -79,16 +71,7 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $item = Item::findOrFail($id);
-
-      if (empty($item)) {
-
-          return redirect(route('items.index'));
-      }
-
-      $item = $item->update($request->all(), ['id' => $id]);
-
-      return redirect(route('items.index'));
+        //
     }
 
     /**
@@ -99,15 +82,6 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-
-      $item = Item::findOrFail($id);
-
-      if (empty($item)) {
-        return redirect(route('items.index'));
-      }
-
-      $item->delete($id);
-
-      return redirect(route('items.index'));
+        //
     }
 }

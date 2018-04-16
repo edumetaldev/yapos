@@ -2,11 +2,13 @@
 
 namespace yapos2\Http\Controllers;
 
+use yapos2\Models\Customer;
 use Illuminate\Http\Request;
-use yapos2\Models\Item;
 
-class ItemController extends Controller
+class CustomerController extends Controller
 {
+    protected $resource = 'customers';
+
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +16,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items =  Item::all();
-        return view('items.index',compact('items'));
+        $customero = Customer::all();
+        return view($this->resource.'.index')->with(['customers'=>$customero]);
     }
 
     /**
@@ -25,8 +27,8 @@ class ItemController extends Controller
      */
     public function create()
     {
-        $item = new Item();
-        return view('items.create',compact('item'));
+      $row = new Customer();
+      return view($this->resource.'.create')->with($this->resource, $row);;
     }
 
     /**
@@ -37,18 +39,18 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        $item = Item::create($input);
-        return redirect('/items');
+      $input = $request->all();
+      $item = Customer::create($input);
+      return redirect(route($this->resource.'.index'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \yapos2\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(customer $customer)
     {
         //
     }
@@ -56,58 +58,58 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-      $item = Item::findOrFail($id);
+      $row = Customer::findOrFail($id);
 
-      if (empty($item)) {
-          return redirect(route('items.index'));
+      if (empty($row)) {
+          return redirect(route($this->resource.'.index'));
       }
 
-      return view('items.edit')->with('item', $item);
+      return view($this->resource.'.edit')->with('customer', $row);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-      $item = Item::findOrFail($id);
+      
+      $row = Customer::findOrFail($id);
 
-      if (empty($item)) {
+      if (empty($row)) {
 
-          return redirect(route('items.index'));
+          return redirect(route($this->resource.'.index'));
       }
 
-      $item = $item->update($request->all(), ['id' => $id]);
+      $row = $row->update($request->all(), ['id' => $id]);
 
-      return redirect(route('items.index'));
+      return redirect(route($this->resource.'.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \yapos2\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
+      $row = Customer::findOrFail($id);
 
-      $item = Item::findOrFail($id);
-
-      if (empty($item)) {
-        return redirect(route('items.index'));
+      if (empty($row)) {
+        return redirect(route($this->resource.'.index'));
       }
 
-      $item->delete($id);
+      $row->delete($id);
 
-      return redirect(route('items.index'));
+      return redirect(route($this->resource.'.index'));
     }
 }

@@ -1,5 +1,4 @@
-
-  <table class="table table-striped table-condensed">
+  <table class="table table-striped table-condensed" id="myTable">
       <thead>
           <th>Upc Ean Isbn</th>
           <th>Name</th>
