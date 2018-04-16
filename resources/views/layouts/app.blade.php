@@ -12,7 +12,7 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
+    @yield('css')
 </head>
 <body>
 
@@ -38,9 +38,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         @guest
+                          <li><a href="{{ url('items') }}"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Items</a></li>
+                          <li><a href="{{ url('sales') }}"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> Sales</a></li>
+                          <li><a href="{{ url('pos') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> POS</a></li>
                         @else
-                        <li><a href="{{ url('items') }}"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Items</a></li>
-                        <li><a href="{{ url('pos') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> POS</a></li>
+                          <li><a href="{{ url('items') }}"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Items</a></li>
+                          <li><a href="{{ url('sales') }}"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> Sales</a></li>
+                          <li><a href="{{ url('pos') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> POS</a></li>
                         @endguest
                     </ul>
 

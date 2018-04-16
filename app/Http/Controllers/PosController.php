@@ -3,8 +3,10 @@
 namespace yapos2\Http\Controllers;
 
 use Illuminate\Http\Request;
-use yapos2\Models\saleitem;
-use yapos2\Models\sale;
+use yapos2\Models\SaleItem;
+use yapos2\Models\Sale;
+use yapos2\Models\Item;
+use yapos2\Models\Customer;
 
 class PosController extends Controller
 {
@@ -15,7 +17,8 @@ class PosController extends Controller
      */
     public function index()
     {
-        return view('pos.index');
+        $customers = Customer::all();
+        return view('pos.index',compact('customers'));
     }
 
     /**
@@ -38,12 +41,15 @@ class PosController extends Controller
     {
         $items = $request->input();
 
-        $sale = new sale();
+        $sale = new Sale();
         $sale->amount = 0;
+        $sale->customer_id = $items['customer'];
+
         $sale->save();
         $total = 0;
-    		for($i=0; $i < count($items)-1; $i++){
-    			$saleitem = new saleitem();
+
+    		for($i=0; $i < $count=count($items['id']); $i++){
+    			$saleitem = new SaleItem();
     			$saleitem->item_id = $items['id'][$i];
     			$saleitem->sale_id = $sale->id;
           $saleitem->quantity = $items['quantity'][$i];
@@ -51,6 +57,10 @@ class PosController extends Controller
           $saleitem->subtotal = $items['price'][$i] * $items['quantity'][$i];
           $total += $saleitem->subtotal;
         	$saleitem->save();
+
+          $item = Item::find($items['id'][$i]);
+          $item->selling_price = $items['price'][$i];
+          $item->save();
     		}
         $sale->amount = $total;
         $sale->save();
@@ -65,7 +75,7 @@ class PosController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

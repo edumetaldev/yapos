@@ -6,27 +6,28 @@
   <div id="app" style="background-color: white" class="col-md-8 col-md-offset-2">
     <form  @submit.prevent="addCarItem" class="form-inline">
         <div class="row">
-          <div class=" col-xs-12 col-md-8">
+          <div class=" col-xs-8 col-md-8">
             <div class="form-group">
               <label class="form-label" for="query">Buscar</label>
                 <input class="form-control" type="text" name="query" v-model="query">
             </div>
           </div>
+
         </div>
         <div class="row">
           <div class=" col-xs-12 col-md-6">
             <div class="form-group">
               <label class="form-label">Producto</label>
-              <select v-model="selected" class="form-control" size="5" style="width:250px;">
+              <select v-model="selected" class="form-control" size="5" style="width:350px;">
                 <option v-for="item in tableFilter" v-bind:value="item">
-                  @{{ item.upc_ean_isbn }} -  @{{ item.description }}
+                  @{{ item.upc_ean_isbn }} -  @{{ item.name }}
                 </option>
               </select>
             </div>
           </div>
           <div class=" col-xs-12 col-md-6">
             <div class="form-group">
-              <label class="form-label">Cantidad</label>
+              <label class="form-label">Cantidad:</label>
               <input class="form-control" type="number" name="quantity" v-model="new_car_item.quantity" style="width: 5em;" >
               <button type="button" class="btn" :disabled="new_car_item.quantity < 1" @click="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
             </div>
@@ -34,6 +35,18 @@
         </div>
       </form>
         <form method="POST" action="{{url('pos')}}" >
+          <div class="row">
+            <div class="col-xs-4 col-md-4">
+              <div class="form-group">
+                <label class="form-label" for="query">Customer</label>
+                <select class="form-control" name="customer">
+                  @foreach($customers as $customer)
+                    <option value="{{ $customer->id }}">{{ $customer->name}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+          </div>
           <div class="row">
           <div>
             <div>
@@ -75,9 +88,9 @@
 <tr>
   <td>@{{ car_item.id }}<input type=hidden name="id[]" :value="car_item.id" /></td>
   <td>@{{ car_item.upc_ean_isbn }}</td>
-  <td>@{{ car_item.description }}</td>
-  <td><input size="1" class="form-control" type="number" style="width: 5em;" name="quantity[]" v-model="car_item.quantity" :onchange="subtotal(car_item)"></td>
-  <td>@{{ car_item.selling_price | money_format }} <input type=hidden name="price[]" :value="car_item.selling_price" /></td>
+  <td>@{{ car_item.name }}</td>
+  <td><input class="form-control" type="number" style="width: 5em;" name="quantity[]" v-model="car_item.quantity" :onchange="subtotal(car_item)"></td>
+  <td><input class="form-control" type="number" min="0" style="width: 6em;" name="price[]" v-model="car_item.selling_price" :onchange="subtotal(car_item)"></td>
   <td>@{{ car_item.subtotal | money_format  }}</td>
   <td> <trash_icon v-on:remove="remove" :index="index"></trash_icon> </td>
 </tr>
@@ -127,6 +140,7 @@ var vm =  new Vue({
               {
                 id: 0,
                 upc_ean_isbn: '',
+                name: '',
                 description: '',
                 quantity: 0,
                 selling_price: 7,
@@ -149,7 +163,7 @@ var vm =  new Vue({
     },
 
     getItems: function (){
-      this.$http.get('http://yapos2.deb/api/items').then(function(response){
+      this.$http.get('{!! url('api/items')!!}').then(function(response){
           this.items = response.body;
         }, function(){
            console.log("error al recuperar items")
@@ -158,7 +172,7 @@ var vm =  new Vue({
     },
     add: function(){
       this.new_car_item.id = this.selected.id
-      this.new_car_item.description = this.selected.description;
+      this.new_car_item.name = this.selected.name;
       this.new_car_item.selling_price = this.selected.selling_price;
       this.new_car_item.upc_ean_isbn = this.selected.upc_ean_isbn;
 
@@ -168,7 +182,7 @@ var vm =  new Vue({
       this.new_car_item = {
         id: 0,
         upc_ean_isbn: '',
-        description: '',
+        name: '',
         quantity: 0,
         unit_price: 0,
         subtotal: 0
@@ -188,10 +202,43 @@ var vm =  new Vue({
       },0);
     },
     tableFilter: function () {
-       return this.findBy(this.items, this.query);
+      if( this.query.length >= 3){
+        return this.findBy(this.items, this.query);
+      }
+
     }
   }
 });
 
+</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $.fn.enterkeytab = function () {
+        $(this).on('keydown', 'input,select,text,button,number', function (e) {
+            var self = $(this)
+              , form = self.parents('form:eq(0)')
+              , focusable
+              , next
+            ;
+            if (e.keyCode == 13) {
+                focusable = form.find('input,a,select,number').filter(':visible');
+                next = focusable.eq(focusable.index(this) + 1);
+                if (next.length) {
+                    //if disable try get next 10 fields
+                    if (next.is(":disabled")){
+                        for(i=2;i<10;i++){
+                            next = focusable.eq(focusable.index(this) + i);
+                            if (!next.is(":disabled"))
+                                break;
+                        }
+                    }
+                    next.focus();
+                }
+                return false;
+            }
+        });
+    }
+    $("form").enterkeytab();
+});
 </script>
 @endsection
