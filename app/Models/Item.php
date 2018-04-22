@@ -82,4 +82,14 @@ class Item extends Model
       'receiving_quantity'  => 'required',
 
   ];
+
+  public function scopeOfSearch($query,$string)
+  {
+      if (trim($string) != ''){
+        $query->orWhere('name','LIKE',"%".$string."%");
+        $query->orWhere('upc_ean_isbn','LIKE',"%".$string."%");
+        $query->orWhere('description','LIKE',"%".$string."%");
+      }
+      return $query;
+  }
 }

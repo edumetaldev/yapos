@@ -1,35 +1,33 @@
 <div id="app">
-  <div class="row">
-    <div class="col-xs-4 col-md-4">
-      @include('layouts.parts.field_search')
-    </div>  
-  </div>
-
-  <div class="table-responsive">
-    <table class="table table-striped table-condensed">
+  <table class="table table-striped table-condensed">
       <thead>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Account</th>
-          <th>Actions</th>
+          <tr>
+              <td>{{trans('supplier.company_name')}}</td>
+              <td>{{trans('supplier.name')}}</td>
+              <td>{{trans('supplier.email')}}</td>
+              <td>{{trans('supplier.phone_number')}}</td>
+              <td>&nbsp;</td>
+          </tr>
       </thead>
       <tbody>
-          <tr v-for="customer in items">
-              <td>@{{ customer.name }}</td>
-              <td>@{{ customer.email }}</td>
-              <td>@{{ customer.account }}</td>
+      @foreach($suppliers as $value)
+          <tr>
+              <td>{{ $value->company_name }}</td>
+              <td>{{ $value->name }}</td>
+              <td>{{ $value->email }}</td>
+              <td>{{ $value->phone_number }}</td>
               <td>
-                  <action_icons url="{{ url('customers') }}" :id="customer.id"></action_icons>
+                  {!! Form::open(array('url' => 'suppliers/' . $value->id, 'class' => 'pull-right')) !!}
+                    <action_icons url="{{ url('suppliers') }}" :id="{{$value->id}}"></action_icons>
+                  {!! Form::close() !!}
               </td>
           </tr>
+      @endforeach
       </tbody>
-    </table>
-  </div>
+  </table>
 </div>
 
-  @section('js')
-  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.0"></script>
-
+@section('js')
   <script type="text/template" id="show_icon">
     <a :href="getUrl(url,id)" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
   </script>
@@ -85,18 +83,23 @@
       var vm =  new Vue({
         el: "#app",
         data: {
-            items: [],
+            rows: [],
             selected: '',
-            query: ''
+            query: '',
+            pagination: [{ 'prev_page_url': 0 }],
         },
         methods:{
-          getItems: function (query){
-            this.$http.get('{!! url('api/customers')!!}'+ '?query=' + query ).then(function(response){
-                this.items = response.body;
+          getItems: function (query, page){
+            this.$http.get('{!! url('api/items')!!}'+ '?query=' + query + "&page=" + page).then(function(response){
+                this.rows = response.body.data;
+                this.pagination = response.body;
             });
+          },
+          changePage(page) {
+            this.getItems(this.query, page);
+            this.pagination.current_page = page;
           }
         }
-      });
+    });
   </script>
-
-  @endsection
+@endsection

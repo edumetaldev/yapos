@@ -13,9 +13,11 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-      return item::select(['id','upc_ean_isbn','name','description','selling_price'])->get();
+      $query = $request->input('query');
+      return item::ofSearch($query)->select(['id','upc_ean_isbn','name','description','selling_price','quantity','cost_price'])
+      ->paginate(25)->appends(['query' => $query]);
     }
 
     /**

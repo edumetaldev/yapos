@@ -19,6 +19,18 @@ class ItemController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+      $item = Item::find($id);
+      return view('items.show',compact('item'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -40,17 +52,6 @@ class ItemController extends Controller
         $input = $request->all();
         $item = Item::create($input);
         return redirect('/items');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

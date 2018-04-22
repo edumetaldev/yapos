@@ -24,4 +24,9 @@ class Sale extends Model
   {
       return $this->belongsTo(\yapos2\Models\Customer::class);
   }
+
+  public function getEmitDateAttribute()
+  {
+    return  \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$this->created_at )->format('d/m/Y');
+  }
 }

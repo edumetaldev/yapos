@@ -23,3 +23,6 @@ Route::resource('items', 'ItemController');
 Route::resource('pos', 'PosController');
 Route::resource('sales', 'SaleController');
 Route::resource('customers', 'CustomerController');
+Route::resource('suppliers', 'SupplierController');
+Route::resource('receivings', 'ReceivingController');
+Route::resource('por', 'PorController');

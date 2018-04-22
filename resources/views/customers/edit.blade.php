@@ -1,20 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.standart')
 
-@section('content')
-   <div class="content">
-     <div class="row">
-       <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
-         <h1>Customers</h1>
-       </div>
-     </div>
-      <div class="row">
-        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
-            <form action="{!! route('customers.update',[$customer->id]) !!}" method="post">
-              {{ method_field('PATCH') }}
-              {{ csrf_field() }}
-              @include('customers.fields')
-            </form>
-        </div>
-     </div>
-   </div>
+@section('title', 'Customer Edit')
+@section('title-right')
+  <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('customers.index') !!}">Back to List</a>
+@endsection
+@section('body')
+    <form action="{!! route('customers.update',[$customer->id]) !!}" method="post">
+      {{ method_field('PATCH') }}
+      {{ csrf_field() }}
+      @include('customers.fields')
+    </form>
 @endsection

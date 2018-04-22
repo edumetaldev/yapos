@@ -25,7 +25,12 @@ class HomeController extends Controller
     {
         $topcustomers = $this->GetTopCustomers();
         $topitems = $this->GetTopItemsSellers();
-        return view('home.index', compact('topcustomers','topitems'));
+        $itemstatus[] = (object) ['title' => 'Items Without Selling Price', 'value' => $this->GetTotalItemsWithoutSellingPrice() ];
+        $itemstatus[] = (object) ['title' => 'Items Without Cost Price', 'value' => $this->GetTotalItemsWithoutCostPrice() ];
+        $itemstatus[] = (object) ['title' => 'Items Reorder Level Down', 'value' => $this->GetTotalItemsReorderLevelDown() ];
+        $lastsellings = $this->GetlastItemsSelling();
+        $lastreceivings = $this->GetlastItemsReceiving();
+        return view('home.index', compact('topcustomers','topitems','itemstatus','lastsellings','lastreceivings'));
     }
 
     public function GetTopCustomers()
@@ -49,5 +54,51 @@ class HomeController extends Controller
             ->limit(10)
             ->orderByRaw('sum(saleitems.quantity)  desc')
             ->get();
+    }
+
+    public function GetTotalItemsWithoutSellingPrice()
+    {
+      return \DB::table('items')
+            ->select(\DB::raw('count(*) as total'))
+            ->where('selling_price','=',0)
+            ->value('total');
+    }
+
+    public function GetTotalItemsWithoutCostPrice()
+    {
+      return \DB::table('items')
+            ->select(\DB::raw('count(*) as total'))
+            ->where('cost_price','=',0)
+            ->value('total');
+    }
+
+    public function GetTotalItemsReorderLevelDown()
+    {
+      return \DB::table('items')
+            ->select(\DB::raw('sum(1) as total'))
+            ->whereColumn('items.reorder_level','>=','items.quantity')->value('total');
+
+    }
+
+    public function GetlastItemsSelling()
+    {
+      return \DB::table('saleitems')
+            ->join('items', 'saleitems.item_id', '=', 'items.id')
+            ->select('items.name', 'saleitems.quantity','items.quantity as stock')
+            ->limit(10)
+            ->orderByRaw('saleitems.created_at desc')
+            ->get();
+
+    }
+
+    public function GetlastItemsReceiving()
+    {
+      return \DB::table('receivingitems')
+            ->join('items', 'receivingitems.item_id', '=', 'items.id')
+            ->select('items.name', 'receivingitems.quantity','items.quantity as stock')
+            ->limit(10)
+            ->orderByRaw('receivingitems.created_at desc')
+            ->get();
+
     }
 }

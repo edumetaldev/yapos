@@ -1,4 +1,3 @@
-<div class="row">
   <!-- Name Field -->
   <div class="form-group">
       <label for="name">Name:</label>
@@ -21,14 +20,8 @@
       <input type="text" name="comment" id="comment" class="form-control" value="{{ old('comment',(isset($customer->comment) ? $customer->comment: ''))}}" />
   </div>
 
-</div>
-
-
-
-
-
-<!-- Submit Field -->
-<div class="form-group col-sm-12">
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a href="{!! route('customers.index') !!}" class="btn btn-default">Cancel</a>
-</div>
+  <!-- Submit Field -->
+  <div class="form-group">
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a href="{!! route('customers.index') !!}" class="btn btn-default">Cancel</a>
+  </div>
