@@ -22,4 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('items', 'ItemController');
 Route::resource('pos', 'PosController');
 Route::resource('sales', 'SaleController');
+<<<<<<< HEAD
 Route::resource('customers', 'CustomerController');
+=======
+>>>>>>> bcd6b436e0f2d22660df6ec4ec29ac789c85c477

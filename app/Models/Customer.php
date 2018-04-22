@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+<<<<<<< HEAD
   protected $fillable = ['name','email', 'account','comment'];
 
   public function scopeOfSearch($query,$string)
@@ -17,4 +18,7 @@ class Customer extends Model
     }
     return $query;
   }
+=======
+    //
+>>>>>>> bcd6b436e0f2d22660df6ec4ec29ac789c85c477
 }

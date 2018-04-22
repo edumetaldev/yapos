@@ -36,7 +36,22 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+<<<<<<< HEAD
                     @include('layouts.left_navbar')
+=======
+                    <ul class="nav navbar-nav">
+                        @guest
+                          <li><a href="{{ url('items') }}"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Items</a></li>
+                          <li><a href="{{ url('sales') }}"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> Sales</a></li>
+                          <li><a href="{{ url('pos') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> POS</a></li>
+                        @else
+                          <li><a href="{{ url('items') }}"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Items</a></li>
+                          <li><a href="{{ url('sales') }}"><span class="glyphicon glyphicon-gift" aria-hidden="true"></span> Sales</a></li>
+                          <li><a href="{{ url('pos') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> POS</a></li>
+                        @endguest
+                    </ul>
+
+>>>>>>> bcd6b436e0f2d22660df6ec4ec29ac789c85c477
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
