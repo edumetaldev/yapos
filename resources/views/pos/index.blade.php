@@ -45,6 +45,11 @@
           <div class="row">
             @include('layouts.parts.cart_table')
           </div>
+          <div class="row">
+            <pre class="code">
+                    @{{ car_items }}
+            </pre>
+          </div>
 
         </form>
     </div> <!-- app -->
@@ -118,8 +123,12 @@ var vm =  new Vue({
   },
   methods:{
     getItems: function (query,page){
-      this.$http.get('{!! url('api/items')!!}'+ '?query=' + query + "&page=" + page).then(function(response){
+      var base_url = '{!! url('api/items')!!}'
+      var url = base_url + '?query=' + query + "&page=" + page;
+
+      this.$http.get(url).then(function(response){
           this.items = response.body.data;
+          console.log(url)
         }, function(){
            console.log("error al recuperar items")
           this.items = [];
@@ -160,34 +169,5 @@ var vm =  new Vue({
 });
 
 </script>
-<script type="text/javascript">
-$(document).ready(function () {
-    $.fn.enterkeytab = function () {
-        $(this).on('keydown', 'input,select,text,button,number', function (e) {
-            var self = $(this)
-              , form = self.parents('form:eq(0)')
-              , focusable
-              , next
-            ;
-            if (e.keyCode == 13) {
-                focusable = form.find('input,a,select,number').filter(':visible');
-                next = focusable.eq(focusable.index(this) + 1);
-                if (next.length) {
-                    //if disable try get next 10 fields
-                    if (next.is(":disabled")){
-                        for(i=2;i<10;i++){
-                            next = focusable.eq(focusable.index(this) + i);
-                            if (!next.is(":disabled"))
-                                break;
-                        }
-                    }
-                    next.focus();
-                }
-                return false;
-            }
-        });
-    }
-    $("form").enterkeytab();
-});
-</script>
+
 @endsection

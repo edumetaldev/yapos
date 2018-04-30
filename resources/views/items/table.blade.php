@@ -60,11 +60,15 @@
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.0"></script>
 
   <script type="text/template" id="show_icon">
-    <a :href="getUrl(url,id)" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+    <a :href="getUrl(url,id)" class='btn btn-default btn-sm'><i class="glyphicon glyphicon-eye-open"></i></a>
   </script>
 
   <script type="text/template" id="edit_icon">
-    <a :href="getUrl(url,id)" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+    <a :href="getUrl(url,id)" class='btn btn-default btn-sm'><i class="glyphicon glyphicon-edit"></i></a>
+  </script>
+
+  <script type="text/template" id="copy_icon">
+    <a :href="getUrl(url,id)" class='btn btn-default btn-sm'><i class="glyphicon glyphicon-duplicate"></i></a>
   </script>
 
   <script type="text/template" id="action_icons">
@@ -74,7 +78,8 @@
           {{ csrf_field() }}
           <show_icon :url="url" :id="id"></show_icon>
           <edit_icon :url="url" :id="id"></edit_icon>
-          <button class ="btn btn-danger btn-xs" type="submit" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash"></i></button>
+          <copy_icon :url="url" :id="id"></copy_icon>
+          <button class ="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash"></i></button>
       </div>
     </form>
   </script>
@@ -98,6 +103,18 @@
         methods: {
           getUrl: function (url,id){
             return url + "/" + id + "/edit";
+          }
+        }
+      });
+  </script>
+
+  <script type="text/javascript">
+    Vue.component('copy_icon',{
+        template: '#copy_icon',
+        props: ['url','id'],
+        methods: {
+          getUrl: function (url,id){
+            return url + "/" + id + "/copy";
           }
         }
       });

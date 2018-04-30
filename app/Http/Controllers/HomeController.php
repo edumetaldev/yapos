@@ -30,7 +30,8 @@ class HomeController extends Controller
         $itemstatus[] = (object) ['title' => 'Items Reorder Level Down', 'value' => $this->GetTotalItemsReorderLevelDown() ];
         $lastsellings = $this->GetlastItemsSelling();
         $lastreceivings = $this->GetlastItemsReceiving();
-        return view('home.index', compact('topcustomers','topitems','itemstatus','lastsellings','lastreceivings'));
+        $lastitemsupdates = $this->GetlastItemsUpdated();
+        return view('home.index', compact('topcustomers','topitems','itemstatus','lastsellings','lastreceivings','lastitemsupdates'));
     }
 
     public function GetTopCustomers()
@@ -100,5 +101,14 @@ class HomeController extends Controller
             ->orderByRaw('receivingitems.created_at desc')
             ->get();
 
+    }
+
+    public function GetlastItemsUpdated()
+    {
+      return \DB::table('items')
+            ->select('upc_ean_isbn','name', 'cost_price', 'selling_price', 'quantity', 'updated_at' )
+            ->limit(10)
+            ->orderByRaw('items.created_at desc')
+            ->get();
     }
 }

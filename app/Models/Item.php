@@ -80,7 +80,6 @@ class Item extends Model
       'is_stockeable'  => 'required',
       'reorder_level'  => 'required',
       'receiving_quantity'  => 'required',
-
   ];
 
   public function scopeOfSearch($query,$string)

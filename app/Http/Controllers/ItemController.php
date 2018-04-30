@@ -42,6 +42,18 @@ class ItemController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     * @param in $id
+     * @return \Illuminate\Http\Response
+     */
+    public function copy($id)
+    {
+        $item = Item::findOrFail($id);
+        return view('items.create',compact('item'));
+    }
+
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -49,6 +61,11 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+           'upc_ean_isbn' => 'required|unique:items,upc_ean_isbn',
+           'name' => 'required'
+        ]);
+        $request->name = strtoupper($request->name);
         $input = $request->all();
         $item = Item::create($input);
         return redirect('/items');
@@ -80,6 +97,11 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
+      $this->validate($request, [
+         'upc_ean_isbn' => 'required',
+         'name' => 'required'
+      ]);
+
       $item = Item::findOrFail($id);
 
       if (empty($item)) {
