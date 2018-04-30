@@ -26,3 +26,4 @@ Route::resource('customers', 'CustomerController');
 Route::resource('suppliers', 'SupplierController');
 Route::resource('receivings', 'ReceivingController');
 Route::resource('por', 'PorController');
+Route::get('items/{id}/copy','ItemController@copy');
