@@ -4,6 +4,7 @@ namespace yapos2\Http\Controllers;
 
 use Illuminate\Http\Request;
 use yapos2\Models\Item;
+use yapos2\Models\Stock;
 
 class ItemController extends Controller
 {
@@ -67,8 +68,29 @@ class ItemController extends Controller
         ]);
         $request->name = strtoupper($request->name);
         $input = $request->all();
-        $item = Item::create($input);
+
+          \DB::beginTransaction();
+          $item = Item::create($input);
+
+          if(!empty($request->quantity))
+          {
+            $this->saveStock($item->id, $request->quantity, $request->remarks);
+          }
+
+          \DB::commit();
+
         return redirect('/items');
+    }
+
+    public function saveStock($item_id, $quantity, $remarks)
+    {
+        $stock = new Stock;
+        $stock->item_id = $item_id;
+        $stock->user_id = \Auth::user()->id;
+        $stock->in_out = $quantity > 0 ? 'in': 'out';
+        $stock->quantity = $quantity ;
+        $stock->remarks = $remarks ? $remarks: 'Manual Edit of Quantity';
+        $stock->save();
     }
 
     /**
@@ -109,7 +131,12 @@ class ItemController extends Controller
           return redirect(route('items.index'));
       }
 
+      $quantity = $request->quantity - $item->quantity;
+
       $item = $item->update($request->all(), ['id' => $id]);
+      $this->saveStock($id, $quantity, $request->remarks);
+
+
 
       return redirect(route('items.index'));
     }

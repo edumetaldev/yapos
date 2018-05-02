@@ -4,7 +4,7 @@
       <label class="form-label" for="query">Search</label>
       <div class="form-inline">
         <input class="form-control" type="text" name="query" v-model="query">
-        <button class="btn" :disabled="query.length < 1"  v-on:click="getItems(query,0)"><span class="glyphicon glyphicon-search"></span></button>
+        <button class="btn" v-on:click="getItems(query,0)"><span class="glyphicon glyphicon-search"></span></button>
         <p v-if="pagination.current_page > 0">Total found: @{{ pagination.total }}</p>
         <p v-if="pagination.current_page > 0">Page: @{{ pagination.current_page}} of @{{ pagination.last_page}}</p>
       </div>

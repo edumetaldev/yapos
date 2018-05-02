@@ -28,6 +28,7 @@ class HomeController extends Controller
         $itemstatus[] = (object) ['title' => 'Items Without Selling Price', 'value' => $this->GetTotalItemsWithoutSellingPrice() ];
         $itemstatus[] = (object) ['title' => 'Items Without Cost Price', 'value' => $this->GetTotalItemsWithoutCostPrice() ];
         $itemstatus[] = (object) ['title' => 'Items Reorder Level Down', 'value' => $this->GetTotalItemsReorderLevelDown() ];
+        $itemstatus[] = (object) ['title' => 'Items NOT Reorder Level Down', 'value' => $this->GetTotalItemsNotReorderLevelDown() ];
         $lastsellings = $this->GetlastItemsSelling();
         $lastreceivings = $this->GetlastItemsReceiving();
         $lastitemsupdates = $this->GetlastItemsUpdated();
@@ -77,7 +78,19 @@ class HomeController extends Controller
     {
       return \DB::table('items')
             ->select(\DB::raw('sum(1) as total'))
-            ->whereColumn('items.reorder_level','>=','items.quantity')->value('total');
+            ->whereColumn('items.reorder_level','>=','items.quantity')
+            ->where('items.is_stockeable','=',1)
+            ->value('total');
+
+    }
+
+    public function GetTotalItemsNotReorderLevelDown()
+    {
+      return \DB::table('items')
+            ->select(\DB::raw('sum(1) as total'))
+            ->whereColumn('items.reorder_level','<','items.quantity')
+            ->where('items.is_stockeable','=',1)
+            ->value('total');
 
     }
 

@@ -32,7 +32,7 @@
           <label class="form-label">Quantity:</label>
           <div class="form-inline">
             <input class="form-control" type="number" name="quantity" v-model="new_car_item.quantity" style="width: 5em;" >
-            <button type="button" class="btn" :disabled="selected.quantity < 1" @click="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+            <button type="button" class="btn" :disabled="new_car_item.quantity < 1" @click="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
           </div>
           <button type="submit" class="btn btn-success pull-right">End Reception</button>
         </div>
