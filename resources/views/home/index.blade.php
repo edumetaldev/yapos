@@ -91,12 +91,12 @@
     <div class="col-md-4">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">Last Items Receiving</h3>
+          <h3 class="panel-title">Last Items Updated</h3>
         </div>
         <div class="panel-body">
           @foreach($lastitemsupdates as $update)
             <p>
-              {{$update->name}} /  quantity: {{$update->quantity}} / cost price: ${{$update->cost_price}} / selling price: ${{$update->selling_price}} 
+              {{$update->name}} /  quantity: {{$update->quantity}} / cost price: ${{$update->cost_price}} / selling price: ${{$update->selling_price}}
             </p>
           @endforeach
         </div>
