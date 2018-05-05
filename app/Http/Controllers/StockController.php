@@ -15,7 +15,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stocks = Stock::paginate(25);
+        $stocks = Stock::orderByRaw('id desc')->paginate(25);
         return view('stocks.index',compact('stocks'));
     }
 

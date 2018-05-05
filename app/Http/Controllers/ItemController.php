@@ -72,25 +72,24 @@ class ItemController extends Controller
           \DB::beginTransaction();
           $item = Item::create($input);
 
-          if(!empty($request->quantity))
-          {
-            $this->saveStock($item->id, $request->quantity, $request->remarks);
-          }
+          $this->saveStock($item, $request->quantity, $request->remarks,true);
 
           \DB::commit();
 
         return redirect('/items');
     }
 
-    public function saveStock($item_id, $quantity, $remarks)
+    public function saveStock(Item $item, $quantity, $remarks,$initial = false)
     {
-        $stock = new Stock;
-        $stock->item_id = $item_id;
-        $stock->user_id = \Auth::user()->id;
-        $stock->in_out = $quantity > 0 ? 'in': 'out';
-        $stock->quantity = $quantity ;
-        $stock->remarks = $remarks ? $remarks: 'Manual Edit of Quantity';
-        $stock->save();
+        if( ($quantity - $item->quantity) != 0 || $initial){
+          $stock = new Stock;
+          $stock->item_id = $item->id;
+          $stock->user_id = \Auth::user()->id;
+          $stock->quantity = $initial ? $quantity: $quantity - $item->quantity ;
+          $stock->in_out = $stock->quantity > 0 ? 'in': 'out';
+          $stock->remarks = $remarks ? $remarks: 'Manual Edit of Quantity';
+          $stock->save();
+        }
     }
 
     /**
@@ -130,12 +129,8 @@ class ItemController extends Controller
 
           return redirect(route('items.index'));
       }
-
-      $quantity = $request->quantity - $item->quantity;
-
-      $item = $item->update($request->all(), ['id' => $id]);
-      $this->saveStock($id, $quantity, $request->remarks);
-
+      $this->saveStock($item, $request->quantity, $request->remarks);
+      $item->update($request->all(), ['id' => $id]);
 
 
       return redirect(route('items.index'));

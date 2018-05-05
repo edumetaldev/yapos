@@ -14,7 +14,7 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $sales = Sale::with('customer')->paginate(10);
+        $sales = Sale::with('customer')->orderByRaw('id desc')->paginate(25);
         return view('sales.index',compact('sales'));
     }
 

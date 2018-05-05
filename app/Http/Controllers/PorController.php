@@ -7,6 +7,7 @@ use yapos2\Models\Supplier;
 use yapos2\Models\Receiving;
 use yapos2\Models\ReceivingItem;
 use yapos2\Models\Item;
+use yapos2\Models\Stock;
 
 class PorController extends Controller
 {
@@ -52,10 +53,23 @@ class PorController extends Controller
           $item->cost_price = $items['price'][$i];
           $item->quantity = $item->quantity + $items['quantity'][$i];
           $item->save();
+
+          $this->increaseStock($item->id,$items['quantity'][$i],'by Receiving '. $receiving->id,'in' );
         }
         $receiving->amount = $total;
         $receiving->save();
         return redirect('por');
+    }
+
+    public function increaseStock($item_id, $quantity, $remarks,$in_out)
+    {
+          $stock = new Stock;
+          $stock->item_id = $item_id;
+          $stock->user_id = \Auth::user()->id;
+          $stock->quantity = $in_out == 'in' ? $quantity: $quantity * -1;
+          $stock->in_out = $in_out ;
+          $stock->remarks = $remarks ? $remarks: 'Manual Edit of Quantity';
+          $stock->save();
     }
 
 }

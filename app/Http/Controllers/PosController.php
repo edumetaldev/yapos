@@ -7,6 +7,7 @@ use yapos2\Models\SaleItem;
 use yapos2\Models\Sale;
 use yapos2\Models\Item;
 use yapos2\Models\Customer;
+use yapos2\Models\Stock;
 
 class PosController extends Controller
 {
@@ -52,9 +53,23 @@ class PosController extends Controller
           $item->selling_price = $items['price'][$i];
           $item->quantity = $item->quantity - $items['quantity'][$i];
           $item->save();
+
+          $this->decreaseStock($item->id,$items['quantity'][$i],'by Sale '. $sale->id,'out' );
     		}
         $sale->amount = $total;
         $sale->save();
         return redirect('pos');
     }
+
+    public function decreaseStock($item_id, $quantity, $remarks,$in_out)
+    {
+          $stock = new Stock;
+          $stock->item_id = $item_id;
+          $stock->user_id = \Auth::user()->id;
+          $stock->quantity = $in_out == 'in' ? $quantity: $quantity * -1;
+          $stock->in_out = $in_out ;
+          $stock->remarks = $remarks ? $remarks: 'Manual Edit of Quantity';
+          $stock->save();
+    }
+
 }

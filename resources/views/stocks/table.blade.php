@@ -2,6 +2,7 @@
     <thead>
         <th>Date</th>
         <th>Item</th>
+        <th>Remarks</th>
         <th>In Out</th>
         <th>Quantity</th>
     </thead>
@@ -10,6 +11,7 @@
         <tr>
             <td>{!! $stock->emitdate !!}</td>
             <td>{!! $stock->item->name !!}</td>
+            <td>{!! $stock->remarks!!}</td>
             <td>{!! $stock->in_out !!}</td>
             <td>{!! $stock->quantity !!}</td>
         </tr>
