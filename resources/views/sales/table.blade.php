@@ -4,6 +4,7 @@
           <th>Date</th>
           <th>Customer</th>
           <th>Amount</th>
+          <th>Items / Units</th>
           <th>Detail</th>
       </thead>
       <tbody>
@@ -12,6 +13,7 @@
               <td>{!! $sale->emitdate !!}</td>
               <td>{!! $sale->customer->name !!}</td>
               <td>{!! $sale->amount !!}</td>
+              <td>{!! $sale->items->count() !!} / {!! $sale->items->sum('quantity') !!}</td>
               <td><a href="{{ url("sales/$sale->id") }}" class="btn btn-info"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a></td>
           </tr>
       @endforeach

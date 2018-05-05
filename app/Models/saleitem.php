@@ -8,7 +8,7 @@ class SaleItem extends Model
 {
     protected $table = "saleitems";
 
-    protected $filliable = ['sale_id','item_id','quantity','price','subtotal'];
+    protected $filliable = ['sale_id','item_id','quantity','cost_price','price','subtotal'];
 
     /**
    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -16,6 +16,11 @@ class SaleItem extends Model
     public function item()
     {
         return $this->belongsTo(\yapos2\Models\Item::class);
+    }
+
+    public function getSubTotalCostAttribute()
+    {
+      return  $this->cost_price * $this->quantity;
     }
 
 }

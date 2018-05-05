@@ -11,7 +11,7 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(yapos2\Models\Item::class, 25)->create();
+      factory(yapos2\Models\Item::class, 5)->create();
       factory(yapos2\Models\Item::class, 5)->create([
         'is_item_kit' => 1
       ]);

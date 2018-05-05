@@ -91,4 +91,25 @@ class Item extends Model
       }
       return $query;
   }
+
+  public function scopeOfOption($query,$array_option)
+  {
+    if (empty($array_option) ) return $query;
+
+      foreach ($array_option as $key => $value) {
+        if ($value == 'reorder_level_down'){
+          $query->whereColumn('items.reorder_level','>=','items.quantity');
+        }
+        if ($value == 'without_cost_price'){
+          $query->where('items.cost_price','=','0');
+        }
+        if ($value == 'without_selling_price'){
+          $query->where('items.selling_price','=','0');
+        }
+        if ($value == 'only_stockeable'){
+          $query->where('items.is_stockeable','=','1');
+        }
+      }
+      return $query;
+  }
 }

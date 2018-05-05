@@ -20,7 +20,7 @@ class ReceivingController extends Controller
      */
     public function index()
     {
-        $rows = $this->model::all();
+        $rows = $this->model::with('supplier')->orderByRaw('id desc')->paginate(25);
         return view('receivings.index')->with('receivings',$rows);
     }
 

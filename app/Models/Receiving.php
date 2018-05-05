@@ -20,4 +20,12 @@ class Receiving extends Model
       {
         return  \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$this->created_at )->format('d/m/Y');
       }
+
+      /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+      public function supplier()
+      {
+          return $this->belongsTo(\yapos2\Models\Supplier::class);
+      }
 }

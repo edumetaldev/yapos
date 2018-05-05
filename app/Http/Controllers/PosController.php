@@ -40,16 +40,21 @@ class PosController extends Controller
         $total = 0;
 
     		for($i=0; $i < $count=count($items['id']); $i++){
-    			$saleitem = new SaleItem();
+
+          $item = Item::find($items['id'][$i]);
+          $saleitem = new SaleItem();
     			$saleitem->item_id = $items['id'][$i];
     			$saleitem->sale_id = $sale->id;
           $saleitem->quantity = $items['quantity'][$i];
           $saleitem->price = $items['price'][$i];
           $saleitem->subtotal = $items['price'][$i] * $items['quantity'][$i];
+          $saleitem->cost_price = $item->cost_price;
+          
           $total += $saleitem->subtotal;
+
         	$saleitem->save();
 
-          $item = Item::find($items['id'][$i]);
+
           $item->selling_price = $items['price'][$i];
           $item->quantity = $item->quantity - $items['quantity'][$i];
           $item->save();

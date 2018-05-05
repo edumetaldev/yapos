@@ -18,6 +18,7 @@ class CreateSaleitemsTable extends Migration
             $table->integer('item_id')->unsigned();
             $table->integer('sale_id')->unsigned();
             $table->integer('quantity');
+            $table->decimal('cost_price', 13, 3);
             $table->decimal('price', 13, 3);
             $table->decimal('subtotal', 13, 3);
             $table->timestamps();

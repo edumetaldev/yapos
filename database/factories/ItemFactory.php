@@ -17,11 +17,11 @@ $factory->define(yapos2\Models\Item::class, function ( Faker $faker) {
 
     return [
         'upc_ean_isbn' => $faker->isbn13,
-        'name' => $faker->numerify('ITEM######'),
+        'name' => strtoupper($faker->sentence($nbWords = 1, $variableNbWords = true)),
         'description' => $faker->sentence($nbWords = 4, $variableNbWords = true),
         'avatar' => 'no-photo.png',
-    		'cost_price' => $faker->numberBetween(1,100),
-    		'selling_price' => $faker->numberBetween(100,500),
+    		'cost_price' => $faker->numberBetween(1,99),
+    		'selling_price' => $faker->numberBetween(100,199),
     		'quantity' => $faker->numberBetween(1,100),
     		'is_stockeable' => 1,
     		'reorder_level' => $faker->numberBetween(2,10),

@@ -14,8 +14,7 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $items =  Item::all();
+    {    
         return view('items.index',compact('items'));
     }
 

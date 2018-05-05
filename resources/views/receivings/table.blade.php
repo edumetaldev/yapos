@@ -3,6 +3,7 @@
       <thead>
           <th>Id</th>
           <th>Date</th>
+          <th>Supplier</th>
           <th>Amount</th>
           <th>items / units</th>
           <th>Detail</th>
@@ -12,6 +13,7 @@
           <tr>
               <td>{!! $row->id !!}</td>
               <td>{!! $row->emitdate !!}</td>
+              <td>{!! $row->supplier->name !!}</td>
               <td>{!! $row->amount !!}</td>
               <td>{!! $row->items->count() !!} / {!! $row->items->sum('quantity') !!}</td>
 
@@ -19,4 +21,11 @@
           </tr>
       @endforeach
       </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="5">
+            {{$receivings->links()}}
+          </td>
+        </tr>
+      </tfoot>
   </table>
