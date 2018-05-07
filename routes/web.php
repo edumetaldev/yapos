@@ -28,3 +28,4 @@ Route::resource('receivings', 'ReceivingController');
 Route::resource('por', 'PorController');
 Route::get('items/{id}/copy','ItemController@copy');
 Route::resource('stocks', 'StockController');
+Route::resource('prices', 'PriceController');

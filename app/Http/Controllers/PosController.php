@@ -8,6 +8,7 @@ use yapos2\Models\Sale;
 use yapos2\Models\Item;
 use yapos2\Models\Customer;
 use yapos2\Models\Stock;
+use yapos2\Models\Price;
 
 class PosController extends Controller
 {
@@ -49,15 +50,23 @@ class PosController extends Controller
           $saleitem->price = $items['price'][$i];
           $saleitem->subtotal = $items['price'][$i] * $items['quantity'][$i];
           $saleitem->cost_price = $item->cost_price;
-          
+
           $total += $saleitem->subtotal;
 
         	$saleitem->save();
 
-
           $item->selling_price = $items['price'][$i];
           $item->quantity = $item->quantity - $items['quantity'][$i];
           $item->save();
+
+          Price::create(
+              [
+                'price'=> $items['price'][$i],
+                'sell_cost' => 'sell',
+                'item_id' => $items['id'][$i],
+                'user_id' => \Auth::user()->id,
+                'remarks' => 'by sale Id:'. $sale->id
+              ]);
 
           $this->decreaseStock($item->id,$items['quantity'][$i],'by Sale '. $sale->id,'out' );
     		}

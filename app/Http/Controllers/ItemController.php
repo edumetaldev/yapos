@@ -5,7 +5,7 @@ namespace yapos2\Http\Controllers;
 use Illuminate\Http\Request;
 use yapos2\Models\Item;
 use yapos2\Models\Stock;
-
+use yapos2\Models\Price;
 class ItemController extends Controller
 {
     /**
@@ -14,7 +14,7 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {    
+    {
         return view('items.index',compact('items'));
     }
 
@@ -72,6 +72,23 @@ class ItemController extends Controller
           $item = Item::create($input);
 
           $this->saveStock($item, $request->quantity, $request->remarks,true);
+          Price::create(
+              [
+                'price'=> $item->cost_price,
+                'sell_cost' => 'cost',
+                'item_id' => $item->id,
+                'user_id' => \Auth::user()->id,
+                'remarks' => 'by New Item '
+              ]);
+
+          Price::create(
+              [
+                'price'=> $item->sell_price,
+                'sell_cost' => 'sell',
+                'item_id' => $item->id,
+                'user_id' => \Auth::user()->id,
+                'remarks' => 'by New Item '
+              ]);
 
           \DB::commit();
 
@@ -129,6 +146,31 @@ class ItemController extends Controller
           return redirect(route('items.index'));
       }
       $this->saveStock($item, $request->quantity, $request->remarks);
+
+      if ($request->cost_price <> $item->cost_price)
+      {
+        Price::create(
+            [
+              'price'=> $request->cost_price,
+              'sell_cost' => 'cost',
+              'item_id' => $item->id,
+              'user_id' => \Auth::user()->id,
+              'remarks' => 'by Manual Update'
+            ]);
+      }
+
+      if ($request->selling_price <> $item->selling_price)
+      {
+        Price::create(
+            [
+              'price'=> $request->selling_price,
+              'sell_cost' => 'sell',
+              'item_id' => $item->id,
+              'user_id' => \Auth::user()->id,
+              'remarks' => 'by Manual Update'
+            ]);
+      }
+
       $item->update($request->all(), ['id' => $id]);
 
 
