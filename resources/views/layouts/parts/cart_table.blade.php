@@ -1,8 +1,8 @@
 <table class="table table-striped">
   <thead>
-    <th>Barcode - Name</th>
-    <th>Quantity</th>
-    <th>Unit Price</th>
+    <th>@lang('Barcode') - @lang('Item')</th>
+    <th>@lang('Quantity') </th>
+    <th>@lang('Unit') @lang('Price')</th>
     <th>Subtotal</th>
     <th>&nbsp;</th>
   </thead>

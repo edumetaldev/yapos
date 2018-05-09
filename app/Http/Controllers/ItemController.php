@@ -74,7 +74,7 @@ class ItemController extends Controller
           $this->saveStock($item, $request->quantity, $request->remarks,true);
           Price::create(
               [
-                'price'=> $item->cost_price,
+                'price'=> $request->cost_price,
                 'sell_cost' => 'cost',
                 'item_id' => $item->id,
                 'user_id' => \Auth::user()->id,
@@ -83,7 +83,7 @@ class ItemController extends Controller
 
           Price::create(
               [
-                'price'=> $item->sell_price,
+                'price'=> $request->sell_price,
                 'sell_cost' => 'sell',
                 'item_id' => $item->id,
                 'user_id' => \Auth::user()->id,

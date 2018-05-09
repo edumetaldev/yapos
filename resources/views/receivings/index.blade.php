@@ -1,22 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.standart')
 
-@section('content')
+@section('title',__('Receivings'))
 
-<div class="content">
+@section('body')
 
-<div class="row">
-
-  <div class=" col-md-8 col-md-offset-2">
-    <div class="content-header">
-        <h3 class="pull-left">Receivings</h3>
-        <h3 class="pull-right">
-
-        </h3>
-    </div>
-          @include('receivings.table')
-  </div>
-</div>
-
-</div>
+  @include('receivings.table')
 
 @endsection

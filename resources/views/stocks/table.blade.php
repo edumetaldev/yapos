@@ -1,10 +1,10 @@
 <table class="table table-striped table-condensed">
     <thead>
-        <th>Date</th>
-        <th>Item</th>
-        <th>Remarks</th>
-        <th>In Out</th>
-        <th>Quantity</th>
+        <th>@lang('Date')</th>
+        <th>@lang('Item')</th>
+        <th>@lang('Remarks')</th>
+        <th>@lang('In Out')</th>
+        <th>@lang('quantity')</th>
     </thead>
     <tbody>
     @foreach($stocks as $stock)

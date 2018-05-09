@@ -1,6 +1,6 @@
 @extends('layouts.standart')
 
-@section('title','Item Create')
+@section('title',__('Item Create'))
 
 @section('body')
 <form action="{!! route('items.store') !!}" method="POST">

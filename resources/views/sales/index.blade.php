@@ -1,6 +1,6 @@
 @extends('layouts.standart')
 
-@section('title','Sales')
+@section('title',__('Sales'))
 
 @section('body')
 

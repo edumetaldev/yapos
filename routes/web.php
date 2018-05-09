@@ -17,15 +17,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function () {
+  Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('items', 'ItemController');
-Route::resource('pos', 'PosController');
-Route::resource('sales', 'SaleController');
-Route::resource('customers', 'CustomerController');
-Route::resource('suppliers', 'SupplierController');
-Route::resource('receivings', 'ReceivingController');
-Route::resource('por', 'PorController');
-Route::get('items/{id}/copy','ItemController@copy');
-Route::resource('stocks', 'StockController');
-Route::resource('prices', 'PriceController');
+  Route::resource('items', 'ItemController');
+  Route::resource('pos', 'PosController');
+  Route::resource('sales', 'SaleController');
+  Route::resource('customers', 'CustomerController');
+  Route::resource('suppliers', 'SupplierController');
+  Route::resource('receivings', 'ReceivingController');
+  Route::resource('por', 'PorController');
+  Route::get('items/{id}/copy','ItemController@copy');
+  Route::resource('stocks', 'StockController');
+  Route::resource('prices', 'PriceController');
+});

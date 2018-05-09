@@ -1,9 +1,9 @@
 @extends('layouts.standart')
 
-@section('title','Item')
+@section('title',__('Item'))
 
 @section('title-right')
-  <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('items.index') !!}">Back to List</a>
+  <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('items.index') !!}">@lang('Back to List')</a>
 @endsection
 
 @section('body')

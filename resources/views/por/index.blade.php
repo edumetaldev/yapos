@@ -1,6 +1,6 @@
 @extends('layouts.standart')
 
-@section('title','Point of Receinvings')
+@section('title',__('Point of Receinvings'))
 
 @section('body')
 
@@ -13,7 +13,7 @@
         </div>
         <div class="col-xs-6 col-md-6">
           <div class="form-group">
-            <label class="form-label" for="query">Supplier</label>
+            <label class="form-label" for="query">@lang('Supplier'):</label>
             <select class="form-control" name="supplier">
             @foreach($suppliers as $supplier)
               <option value="{{ $supplier->id}}">{{$supplier->name}}</option>
@@ -29,12 +29,12 @@
           @include('layouts.parts.item_select_field')
         </div>
         <div class=" col-xs-12 col-md-6">
-          <label class="form-label">Quantity:</label>
+          <label class="form-label">@lang('Quantity'):</label>
           <div class="form-inline">
             <input class="form-control" type="number" name="quantity" v-model="new_car_item.quantity" style="width: 5em;" >
             <button type="button" class="btn" :disabled="new_car_item.quantity < 1" @click="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
           </div>
-          <button type="submit" class="btn btn-success pull-right">End Reception</button>
+          <button type="submit" class="btn btn-success pull-right">@lang('End Reception')</button>
         </div>
       </div>
 

@@ -1,12 +1,12 @@
 
   <table class="table table-striped table-condensed">
       <thead>
-          <th>Id</th>
-          <th>Date</th>
-          <th>Supplier</th>
-          <th>Amount</th>
-          <th>items / units</th>
-          <th>Detail</th>
+          <th>#</th>
+          <th>@lang('Date')</th>
+          <th>@lang('Supplier')</th>
+          <th>@lang('Amount')</th>
+          <th>@lang('Items') / @lang('Units')</th>
+          <th>@lang('Detail')</th>
       </thead>
       <tbody>
       @foreach($receivings as $row)

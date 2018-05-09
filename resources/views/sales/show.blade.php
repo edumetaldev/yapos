@@ -1,12 +1,12 @@
 @extends('layouts.standart')
 
-@section('title','Sale Detail')
+@section('title',__('Sale')." ". __('Detail'))
 
 @section('body')
-    <p>Date: {!! $sale->emitdate !!}</p>
-    <p>Amount: ${!! $sale->amount !!}</p>
-    <p>Total Costs: ${!! $sale->items->sum('subtotalcost') !!}</p>
-    <p>Profits: ${!! $sale->items->sum('subtotal') - $sale->items->sum('subtotalcost')  !!}</p>
+    <p>@lang('Date'): {!! $sale->emitdate !!}</p>
+    <p>@lang('Amount'): ${!! $sale->amount !!}</p>
+    <p>@lang('Total Cost'): ${!! $sale->items->sum('subtotalcost') !!}</p>
+    <p>@lang('Profits'): ${!! $sale->items->sum('subtotal') - $sale->items->sum('subtotalcost')  !!}</p>
 
 
     <a href="{{ url("sales") }}" class="btn btn-info"> <span class="glyphicon glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back</a>
@@ -15,11 +15,11 @@
 
   <table class="table table-striped table-condensed">
       <thead>
-          <th>Id</th>
-          <th>Item</th>
-          <th>Cost Price</th>
-          <th>Quantity</th>
-          <th>Price</th>
+          <th>#</th>
+          <th>@lang('Item')</th>
+          <th>@lang('Cost Price')</th>
+          <th>@lang('Quantity')</th>
+          <th>@lang('Price')</th>
           <th>Subtotal</th>
       </thead>
       <tbody>

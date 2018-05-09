@@ -1,25 +1,19 @@
 <div id="app">
 <div class="row">
-  <div class="col-md-4">
-  <div class="form-group">
-    <label class="form-label" for="query">Search</label>
-    <div class="form-inline">
-      <input class="form-control" type="text" name="query" v-model="query">
-      <button class="btn" v-on:click="getItems(query,0)"><span class="glyphicon glyphicon-search"></span></button>
-      <p v-if="pagination.current_page > 0">Total found: @{{ pagination.total }}</p>
-      <p v-if="pagination.current_page > 0">Page: @{{ pagination.current_page}} of @{{ pagination.last_page}}</p>
-    </div>
-  </div>
+  <div class="col-md-5">
+    @include('layouts.parts.field_search')
+    <p v-if="pagination.current_page > 0">Total found: @{{ pagination.total }}</p>
+    <p v-if="pagination.current_page > 0">@lang('Page'): @{{ pagination.current_page}} @lang('of') @{{ pagination.last_page}}</p>
 </div>
-<div class="col-md-8">
+<div class="col-md-7">
   <div class="form-inline">
-    <label class="form-label" for="query">Reorder Level Down:</label>
+    <label class="form-label" for="query">@lang('Reorder Level Down'):</label>
     <input type="checkbox" name="options[]" v-model="options" value="reorder_level_down" /><br/>
-    <label class="form-label" for="query">Without Cost Price:</label>
+    <label class="form-label" for="query">@lang('Without Cost Price'):</label>
     <input type="checkbox" name="options[]" v-model="options" value="without_cost_price" /><br/>
-    <label class="form-label" for="query">Without Selling Price:</label>
+    <label class="form-label" for="query">@lang('Without Selling Price'):</label>
     <input type="checkbox" name="options[]" v-model="options" value="without_selling_price" /><br/>
-    <label class="form-label" for="query">Only Stockeables:</label>
+    <label class="form-label" for="query">@lang('Only Stockeables'):</label>
     <input type="checkbox" name="options[]" v-model="options" value="only_stockeable" />
   </div>
 </div>
@@ -29,10 +23,10 @@
   <div class="table-responsible">
     <table class="table table-striped table-condensed">
       <thead>
-        <th>Upc Ean Isbn - Name</th>
-        <th class="hidden-xs">Cost Price</th>
-        <th>Selling Price</th>
-        <th>Quantity</th>
+        <th>@lang('Barcode') - @lang('Item')</th>
+        <th class="hidden-xs">@lang('Cost Price')</th>
+        <th>@lang('Selling Price')</th>
+        <th>@lang('Quantity')</th>
         <th>Action</th>
       </thead>
       <tbody>

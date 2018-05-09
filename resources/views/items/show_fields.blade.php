@@ -6,7 +6,7 @@
 
 <!-- Upc Ean Isbn Field -->
 <div class="form-group">
-    {!! Form::label('upc_ean_isbn', 'Upc Ean Isbn:') !!}
+    {!! Form::label('upc_ean_isbn', __('Barcode').':') !!}
     <p>{!! $item->upc_ean_isbn !!}</p>
 </div>
 
@@ -93,4 +93,3 @@
     {!! Form::label('deleted_at', 'Deleted At:') !!}
     <p>{!! $item->deleted_at !!}</p>
 </div>
-

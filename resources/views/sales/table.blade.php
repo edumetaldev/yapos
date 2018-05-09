@@ -1,11 +1,11 @@
 
   <table class="table table-striped table-condensed">
       <thead>
-          <th>Date</th>
-          <th>Customer</th>
-          <th>Amount</th>
-          <th>Items / Units</th>
-          <th>Detail</th>
+          <th>@lang('Date')</th>
+          <th>@lang('Customer')</th>
+          <th>@lang('Amount')</th>
+          <th>@lang('Items') / @lang('Units')</th>
+          <th>@lang('Detail')</th>
       </thead>
       <tbody>
       @foreach($sales as $sale)

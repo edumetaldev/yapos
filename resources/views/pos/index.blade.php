@@ -1,5 +1,5 @@
 @extends('layouts.standart')
-@section('title','Point of Sale')
+@section('title',__('Point of Sale'))
 @section('body')
   <div id="app">
     <form method="POST" action="{{url('pos')}}">
@@ -10,7 +10,7 @@
           </div>
           <div class=" col-xs-12 col-md-6">
             <div class="form-group">
-              <label class="form-label" for="query">Customer</label>
+              <label class="form-label" for="query">@lang('Customer')</label>
               <select class="form-control" name="customer">
                 @foreach($customers as $customer)
                   <option value="{{ $customer->id }}">{{ $customer->name}}</option>
@@ -22,7 +22,7 @@
         <div class="row">
           <div class=" col-xs-12 col-md-6">
             <div class="form-group">
-            <label class="form-label">Items</label>
+            <label class="form-label">@lang('Items'):</label>
               <select v-model="selected" class="form-control" size="8">
                 <option v-for="item in items" v-bind:value="item">
                   @{{ item.upc_ean_isbn }} -  @{{ item.name }}
@@ -31,24 +31,19 @@
             </div>
           </div>
           <div class=" col-xs-12 col-md-6">
-            <label class="form-label">Quantity:</label>
+            <label class="form-label">@lang('Quantity'):</label>
             <div class="form-inline">
               <input class="form-control" type="number" name="quantity" v-model="new_car_item.quantity" style="width: 5em;" >
               <button type="button" class="btn" :disabled="new_car_item.quantity < 1" @click="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
             </div>
             <div class="pull-right">
-              <button type="submit" class="btn btn-success">End Shop</button>
+              <button type="submit" class="btn btn-success">@lang('End Shop')</button>
             </div>
           </div>
         </div>
 
           <div class="row">
             @include('layouts.parts.cart_table')
-          </div>
-          <div class="row">
-            <pre class="code">
-                    @{{ car_items }}
-            </pre>
           </div>
 
         </form>

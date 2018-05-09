@@ -1,6 +1,6 @@
 @extends('layouts.standart')
 
-@section('title','Stocks')
+@section('title',__('Stocks'))
 
 @section('body')
   @include('stocks.table')

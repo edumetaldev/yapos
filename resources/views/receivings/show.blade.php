@@ -4,14 +4,14 @@
     <div id="app" class="content-fluid">
       <div class="row">
         <div class="col-xs-8 col-xs-offset-2">
-          <h1>Receiving Detail</h1>
-          <h4>Date: {!! \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$receiving->created_at)->format('d/m/Y'); !!}</h4>
-          <h4>Amount: ${!! $receiving->amount !!}</h4>
+          <h1>@lang('Receiving') @lang('Detail')</h1>
+          <h4>@lang('Date'): {!! $receiving->EmitDate !!}</h4>
+          <h4>@lang('Amount'): ${!! $receiving->amount !!}</h4>
         </div>
       </div>
       <div class="row">
             <div class="col-xs-8 col-xs-offset-2">
-            <a href="{{ url("receivings") }}" class="btn btn-info"> <span class="glyphicon glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back</a>
+            <a href="{{ url("receivings") }}" class="btn btn-info"> <span class="glyphicon glyphicon glyphicon-menu-left" aria-hidden="true"></span> @lang('Back')</a>
             </div>
       </div>
       <div class="row" style="padding-left: 20px">
