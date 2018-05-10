@@ -83,7 +83,7 @@ class ItemController extends Controller
 
           Price::create(
               [
-                'price'=> $request->sell_price,
+                'price'=> $request->selling_price,
                 'sell_cost' => 'sell',
                 'item_id' => $item->id,
                 'user_id' => \Auth::user()->id,
