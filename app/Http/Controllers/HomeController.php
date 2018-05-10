@@ -25,10 +25,10 @@ class HomeController extends Controller
     {
         $topcustomers = $this->GetTopCustomers();
         $topitems = $this->GetTopItemsSellers();
-        $itemstatus[] = (object) ['title' => 'Items Without Selling Price', 'value' => $this->GetTotalItemsWithoutSellingPrice() ];
-        $itemstatus[] = (object) ['title' => 'Items Without Cost Price', 'value' => $this->GetTotalItemsWithoutCostPrice() ];
-        $itemstatus[] = (object) ['title' => 'Items Reorder Level Down', 'value' => $this->GetTotalItemsReorderLevelDown() ];
-        $itemstatus[] = (object) ['title' => 'Items NOT Reorder Level Down', 'value' => $this->GetTotalItemsNotReorderLevelDown() ];
+        $itemstatus[] = (object) ['title' => __('Items') .' '. __('Without Selling Price'), 'value' => $this->GetTotalItemsWithoutSellingPrice() ];
+        $itemstatus[] = (object) ['title' => __('Items') .' '. __('Without Cost Price'), 'value' => $this->GetTotalItemsWithoutCostPrice() ];
+        $itemstatus[] = (object) ['title' => __('Items') .' '. __('Reorder Level Down'), 'value' => $this->GetTotalItemsReorderLevelDown() ];
+        $itemstatus[] = (object) ['title' => __('Items') .' '. __('NOT Reorder Level Down'), 'value' => $this->GetTotalItemsNotReorderLevelDown() ];
         $lastsellings = $this->GetlastItemsSelling();
         $lastreceivings = $this->GetlastItemsReceiving();
         $lastitemsupdates = $this->GetlastItemsUpdated();

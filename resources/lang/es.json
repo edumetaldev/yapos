@@ -56,7 +56,13 @@
   "Point of Sale": "Punto de Venta",
   "End Shop": "Finalizar Venta",
   "Point of Receinvings": "Punto de Recepción",
-  "End Reception" : "Finalizar Recepción"
+  "End Reception" : "Finalizar Recepción",
+  "Items status": "Información Productos",
+  "Top items selling": "Productos mas vendidos",
+  "Last Items Selling":  "Últimos Vendidos",
+  "Top Customers by amount": "Clientes por Monto",
+  "Last Items Receiving": "Últimos Recibidos",
+  "Last Items Updated": "Productos Actualizados"
 
 
 }

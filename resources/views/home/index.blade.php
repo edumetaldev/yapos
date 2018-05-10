@@ -11,7 +11,7 @@
     <div class="col-md-4">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">Items status</h3>
+          <h3 class="panel-title">@lang('Items status')</h3>
         </div>
         <div class="panel-body">
           @foreach($itemstatus as $status)
@@ -26,7 +26,7 @@
     <div class="col-md-4">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">Top items selling</h3>
+          <h3 class="panel-title">@lang('Top items selling')</h3>
         </div>
         <div class="panel-body">
           @foreach($topitems as $topitem)
@@ -41,7 +41,7 @@
     <div class="col-md-4">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">Last Items Selling</h3>
+          <h3 class="panel-title">@lang('Last Items Selling')</h3>
         </div>
         <div class="panel-body">
           @foreach($lastsellings as $selling)
@@ -59,7 +59,7 @@
     <div class="col-md-4">
       <div class="panel panel-info">
     <div class="panel-heading">
-      <h3 class="panel-title">Top Customers by amount</h3>
+      <h3 class="panel-title">@lang('Top Customers by amount')</h3>
     </div>
     <div class="panel-body">
       @foreach($topcustomers as $topcustomer)
@@ -75,7 +75,7 @@
     <div class="col-md-4">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">Last Items Receiving</h3>
+          <h3 class="panel-title">@lang('Last Items Receiving')</h3>
         </div>
         <div class="panel-body">
           @foreach($lastreceivings as $receiving)
@@ -91,7 +91,7 @@
     <div class="col-md-4">
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h3 class="panel-title">Last Items Updated</h3>
+          <h3 class="panel-title">@lang('Last Items Updated')</h3>
         </div>
         <div class="panel-body">
           @foreach($lastitemsupdates as $update)
