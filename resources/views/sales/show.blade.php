@@ -37,7 +37,7 @@
       </tbody>
       <tfoot>
         <tr>
-            <td colspan="3"></td>
+            <td colspan="4"></td>
             <td>Total:</td>
             <td>${!! $sale->amount !!}</td>
         </tr>
