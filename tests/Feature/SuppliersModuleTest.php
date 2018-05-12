@@ -14,12 +14,11 @@ class SuppliersModuleTest extends TestCase
   use RefreshDatabase;
     /** @test
      */
+
     function openindex()
     {
-
       //$this->withoutExceptionHandling();
       $user = factory(User::class)->create();
-
       $response = $this->actingAs($user)
              ->get('/suppliers')
              ->assertStatus(200);
@@ -27,11 +26,12 @@ class SuppliersModuleTest extends TestCase
 
     /** @test
     */
+
     function newRow()
     {
-    //  $this->withoutExceptionHandling();
-      $user = factory(User::class)->create();
+      //$this->withoutExceptionHandling();
 
+      $user = factory(User::class)->create();
       $this->actingAs($user)->post('/suppliers/', [
            'name' => 'supplier name',
            'email' => 'email@yapos.net',
@@ -49,4 +49,5 @@ class SuppliersModuleTest extends TestCase
         ->get('/suppliers/'.$supplier->id.'/edit')
         ->assertSee($supplier->name);
     }
+
 }

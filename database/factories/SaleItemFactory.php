@@ -6,7 +6,7 @@ $factory->define(yapos2\Models\SaleItem::class, function ( Faker $faker ) {
 
     return [
         'item_id' => function() {
-          return factory(yapos2\Models\Item::class)->create()->id;
+          return \yapos2\Models\Item::inRandomOrder()->first()->id;
         },
         'quantity' => $faker->numberBetween(1,20),
         'cost_price' => function (array $item) {
