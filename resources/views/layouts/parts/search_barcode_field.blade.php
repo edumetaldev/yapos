@@ -1,6 +1,6 @@
 <div class="form-group">
     <label class="form-label" for="query">@lang('Search'):</label>
-    <div class="input-group">
+    <div class="input-group input-group-lg">
       <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-barcode" aria-hidden="true"></span></span>
       <input class="form-control" type="number" name="query" v-model="query">
       <span class="input-group-btn">
