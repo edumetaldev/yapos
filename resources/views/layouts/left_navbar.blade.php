@@ -10,7 +10,7 @@
           <li><a href="{{ url('prices') }}"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> @lang('Prices')</a></li>
           <li><a href="{{ url('pos') }}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> POS</a></li>
           <li><a href="{{ url('por') }}"><span class="glyphicon glyphicon-equalizer" aria-hidden="true"></span> POR</a></li>
-
+          <li><a href="{{ url('checkprice') }}"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Price</a></li>
     @endauth
 
 </ul>

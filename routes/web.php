@@ -30,4 +30,5 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('items/{id}/copy','ItemController@copy');
   Route::resource('stocks', 'StockController');
   Route::resource('prices', 'PriceController');
+  Route::resource('checkprice', 'CheckPriceController');
 });
