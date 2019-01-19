@@ -28,4 +28,9 @@ class Receiving extends Model
       {
           return $this->belongsTo(\yapos2\Models\Supplier::class);
       }
+
+      public function invoices()
+      {
+         return $this->morphMany(\yapos2\Models\Invoice::class, 'ordertable');
+      }
 }

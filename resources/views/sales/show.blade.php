@@ -10,9 +10,9 @@
 
 
     <a href="{{ url("sales") }}" class="btn btn-info"> <span class="glyphicon glyphicon glyphicon-menu-left" aria-hidden="true"></span> Back</a>
-
-
-
+@if ($sale->invoices->count() == 0)
+    <a href="{{ url("sales/$sale->id/makeinvoice") }}" class="btn btn-info"> <span class="glyphicon glyphicon glyphicon-file" aria-hidden="true"></span> Make Invoice</a>
+@endempty
   <table class="table table-striped table-condensed">
       <thead>
           <th>#</th>

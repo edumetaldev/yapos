@@ -29,4 +29,9 @@ class Sale extends Model
   {
     return  \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$this->created_at )->format('d/m/Y');
   }
+
+  public function invoices()
+  {
+     return $this->morphMany(\yapos2\Models\Invoice::class, 'ordertable');
+  }
 }

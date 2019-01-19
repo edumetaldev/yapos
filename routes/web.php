@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/home', 'HomeController@index')->name('home');
 
@@ -31,4 +32,8 @@ Route::group(['middleware' => ['auth']], function () {
   Route::resource('stocks', 'StockController');
   Route::resource('prices', 'PriceController');
   Route::resource('checkprice', 'CheckPriceController');
+  Route::resource('invoices', 'InvoiceController');
+  Route::get('sales/{order_id}/makeinvoice','SaleController@makeInvoice');
+  Route::get('receivings/{order_id}/makeinvoice','ReceivingController@makeInvoice'); // TODO: cambiar a ORDER
+
 });

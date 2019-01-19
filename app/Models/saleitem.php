@@ -8,7 +8,7 @@ class SaleItem extends Model
 {
     protected $table = "saleitems";
 
-    protected $filliable = ['sale_id','item_id','quantity','cost_price','price','subtotal'];
+    protected $fillable = ['sale_id','item_id','quantity','cost_price','price','subtotal'];
 
     /**
    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
