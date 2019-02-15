@@ -1,6 +1,6 @@
 <?php
 
-namespace yapos2\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +13,7 @@ class Price extends Model
      **/
       public function item()
       {
-          return $this->belongsTo(\yapos2\Models\Item::class);
+          return $this->belongsTo(\App\Models\Item::class);
       }
 
       public function getEmitDateAttribute()

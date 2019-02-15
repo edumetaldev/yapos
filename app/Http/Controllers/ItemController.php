@@ -1,11 +1,11 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use yapos2\Models\Item;
-use yapos2\Models\Stock;
-use yapos2\Models\Price;
+use App\Models\Item;
+use App\Models\Stock;
+use App\Models\Price;
 class ItemController extends Controller
 {
     /**

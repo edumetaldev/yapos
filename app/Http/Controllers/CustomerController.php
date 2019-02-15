@@ -1,8 +1,8 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace App\Http\Controllers;
 
-use yapos2\Models\Customer;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -47,7 +47,7 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \yapos2\Models\customer  $customer
+     * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function show(customer $customer)
@@ -97,7 +97,7 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \yapos2\Models\customer  $customer
+     * @param  \App\Models\customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

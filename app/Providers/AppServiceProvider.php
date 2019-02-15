@@ -1,6 +1,6 @@
 <?php
 
-namespace yapos2\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

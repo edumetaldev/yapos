@@ -1,6 +1,6 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 

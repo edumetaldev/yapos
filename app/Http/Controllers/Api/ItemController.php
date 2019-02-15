@@ -1,10 +1,10 @@
 <?php
 
-namespace yapos2\Http\Controllers\Api;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use yapos2\Http\Controllers\Controller;
-use yapos2\Models\Item;
+use App\Http\Controllers\Controller;
+use App\Models\Item;
 
 class ItemController extends Controller
 {

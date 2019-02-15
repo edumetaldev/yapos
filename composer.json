@@ -27,7 +27,7 @@
             "database/factories"
         ],
         "psr-4": {
-            "yapos2\\": "app/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {

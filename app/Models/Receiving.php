@@ -1,6 +1,6 @@
 <?php
 
-namespace yapos2\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +13,7 @@ class Receiving extends Model
        **/
       public function items()
       {
-          return $this->hasMany(\yapos2\Models\ReceivingItem::class);
+          return $this->hasMany(\App\Models\ReceivingItem::class);
       }
 
       public function getEmitDateAttribute()
@@ -26,11 +26,11 @@ class Receiving extends Model
      **/
       public function supplier()
       {
-          return $this->belongsTo(\yapos2\Models\Supplier::class);
+          return $this->belongsTo(\App\Models\Supplier::class);
       }
 
       public function invoices()
       {
-         return $this->morphMany(\yapos2\Models\Invoice::class, 'ordertable');
+         return $this->morphMany(\App\Models\Invoice::class, 'ordertable');
       }
 }

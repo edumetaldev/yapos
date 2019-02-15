@@ -1,8 +1,8 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace App\Http\Controllers;
 
-use yapos2\FinancialTransaction;
+use App\FinancialTransaction;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -41,7 +41,7 @@ class TransactionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \yapos2\FinancialTransaction  $financialTransaction
+     * @param  \App\FinancialTransaction  $financialTransaction
      * @return \Illuminate\Http\Response
      */
     public function show(FinancialTransaction $financialTransaction)
@@ -52,7 +52,7 @@ class TransactionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \yapos2\FinancialTransaction  $financialTransaction
+     * @param  \App\FinancialTransaction  $financialTransaction
      * @return \Illuminate\Http\Response
      */
     public function edit(FinancialTransaction $financialTransaction)
@@ -64,7 +64,7 @@ class TransactionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \yapos2\FinancialTransaction  $financialTransaction
+     * @param  \App\FinancialTransaction  $financialTransaction
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, FinancialTransaction $financialTransaction)
@@ -75,7 +75,7 @@ class TransactionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \yapos2\FinancialTransaction  $financialTransaction
+     * @param  \App\FinancialTransaction  $financialTransaction
      * @return \Illuminate\Http\Response
      */
     public function destroy(FinancialTransaction $financialTransaction)

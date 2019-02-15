@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        yapos2\Providers\AppServiceProvider::class,
-        yapos2\Providers\AuthServiceProvider::class,
-        // yapos2\Providers\BroadcastServiceProvider::class,
-        yapos2\Providers\EventServiceProvider::class,
-        yapos2\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
     ],
 

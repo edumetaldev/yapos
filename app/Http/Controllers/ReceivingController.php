@@ -1,10 +1,10 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace App\Http\Controllers;
 
-use yapos2\Models\Receiving;
+use App\Models\Receiving;
 use Illuminate\Http\Request;
-use yapos2\Repositories\Invoice;
+use App\Repositories\Invoice;
 
 class ReceivingController extends Controller
 {
@@ -30,7 +30,7 @@ class ReceivingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \yapos2\Receiving  $receiving
+     * @param  \App\Receiving  $receiving
      * @return \Illuminate\Http\Response
      */
     public function show($id)

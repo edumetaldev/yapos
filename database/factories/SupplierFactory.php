@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(yapos2\Models\Supplier::class, function (Faker $faker) {
+$factory->define(App\Models\Supplier::class, function (Faker $faker) {
     return [
         'company_name' => $faker->company,
         'name' => $faker->name,

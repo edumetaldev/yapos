@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(yapos2\Models\Item::class, function ( Faker $faker) {
+$factory->define(App\Models\Item::class, function ( Faker $faker) {
 
     return [
         'upc_ean_isbn' => $faker->isbn13,

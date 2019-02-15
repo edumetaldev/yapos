@@ -1,6 +1,6 @@
 <?php
 
-namespace yapos2\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,7 +8,7 @@ class Invoice extends Model
 {
   public function lines()
   {
-     return $this->hasMany(\yapos2\Models\InvoiceLine::class);
+     return $this->hasMany(\App\Models\InvoiceLine::class);
   }
 
   public function getEmitDateAttribute()

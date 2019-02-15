@@ -1,8 +1,8 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace App\Http\Controllers;
 
-use yapos2\InvoiceLineItem;
+use App\InvoiceLineItem;
 use Illuminate\Http\Request;
 
 class InvoiceLineController extends Controller
@@ -41,7 +41,7 @@ class InvoiceLineController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \yapos2\InvoiceLineItem  $invoiceLineItem
+     * @param  \App\InvoiceLineItem  $invoiceLineItem
      * @return \Illuminate\Http\Response
      */
     public function show(InvoiceLineItem $invoiceLineItem)
@@ -52,7 +52,7 @@ class InvoiceLineController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \yapos2\InvoiceLineItem  $invoiceLineItem
+     * @param  \App\InvoiceLineItem  $invoiceLineItem
      * @return \Illuminate\Http\Response
      */
     public function edit(InvoiceLineItem $invoiceLineItem)
@@ -64,7 +64,7 @@ class InvoiceLineController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \yapos2\InvoiceLineItem  $invoiceLineItem
+     * @param  \App\InvoiceLineItem  $invoiceLineItem
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, InvoiceLineItem $invoiceLineItem)
@@ -75,7 +75,7 @@ class InvoiceLineController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \yapos2\InvoiceLineItem  $invoiceLineItem
+     * @param  \App\InvoiceLineItem  $invoiceLineItem
      * @return \Illuminate\Http\Response
      */
     public function destroy(InvoiceLineItem $invoiceLineItem)

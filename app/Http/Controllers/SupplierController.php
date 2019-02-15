@@ -1,8 +1,8 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace App\Http\Controllers;
 
-use yapos2\Models\Supplier;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class SupplierController extends Controller
@@ -51,7 +51,7 @@ class SupplierController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \yapos2\Supplier  $supplier
+     * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -69,7 +69,7 @@ class SupplierController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \yapos2\Supplier  $supplier
+     * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -89,7 +89,7 @@ class SupplierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \yapos2\Supplier  $supplier
+     * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

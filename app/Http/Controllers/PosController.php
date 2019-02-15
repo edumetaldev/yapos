@@ -1,14 +1,14 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use yapos2\Models\SaleItem;
-use yapos2\Models\Sale;
-use yapos2\Models\Item;
-use yapos2\Models\Customer;
-use yapos2\Models\Stock;
-use yapos2\Models\Price;
+use App\Models\SaleItem;
+use App\Models\Sale;
+use App\Models\Item;
+use App\Models\Customer;
+use App\Models\Stock;
+use App\Models\Price;
 
 class PosController extends Controller
 {

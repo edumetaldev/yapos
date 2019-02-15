@@ -1,10 +1,10 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use yapos2\Models\Sale;
-use yapos2\Repositories\Invoice;
+use App\Models\Sale;
+use App\Repositories\Invoice;
 
 class SaleController extends Controller
 {

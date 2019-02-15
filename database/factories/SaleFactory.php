@@ -13,12 +13,12 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(yapos2\Models\Sale::class, function ( Faker $faker) {
+$factory->define(App\Models\Sale::class, function ( Faker $faker) {
 
     return [
         'amount' => 0,
         'customer_id' => function() {
-          return factory(yapos2\Models\Customer::class)->create()->id;
+          return factory(App\Models\Customer::class)->create()->id;
         },
 
     ];

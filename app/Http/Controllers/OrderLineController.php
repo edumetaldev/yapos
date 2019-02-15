@@ -1,8 +1,8 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace App\Http\Controllers;
 
-use yapos2\OrderLine;
+use App\OrderLine;
 use Illuminate\Http\Request;
 
 class OrderLineController extends Controller
@@ -41,7 +41,7 @@ class OrderLineController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \yapos2\OrderLine  $orderLine
+     * @param  \App\OrderLine  $orderLine
      * @return \Illuminate\Http\Response
      */
     public function show(OrderLine $orderLine)
@@ -52,7 +52,7 @@ class OrderLineController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \yapos2\OrderLine  $orderLine
+     * @param  \App\OrderLine  $orderLine
      * @return \Illuminate\Http\Response
      */
     public function edit(OrderLine $orderLine)
@@ -64,7 +64,7 @@ class OrderLineController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \yapos2\OrderLine  $orderLine
+     * @param  \App\OrderLine  $orderLine
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, OrderLine $orderLine)
@@ -75,7 +75,7 @@ class OrderLineController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \yapos2\OrderLine  $orderLine
+     * @param  \App\OrderLine  $orderLine
      * @return \Illuminate\Http\Response
      */
     public function destroy(OrderLine $orderLine)

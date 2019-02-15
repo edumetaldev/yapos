@@ -1,8 +1,8 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace App\Http\Controllers;
 
-use yapos2\Order;
+use App\Order;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -41,7 +41,7 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \yapos2\Order  $order
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
@@ -52,7 +52,7 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \yapos2\Order  $order
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function edit(Order $order)
@@ -64,7 +64,7 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \yapos2\Order  $order
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Order $order)
@@ -75,7 +75,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \yapos2\Order  $order
+     * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
     public function destroy(Order $order)

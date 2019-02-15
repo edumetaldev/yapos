@@ -1,10 +1,10 @@
 <?php
-namespace yapos2\Repositories;
+namespace App\Repositories;
 
-use yapos2\Models\Invoice as InvoiceModel;
-use yapos2\Models\InvoiceLine;
-use yapos2\Models\Sale;
-use yapos2\Models\Receiving;
+use App\Models\Invoice as InvoiceModel;
+use App\Models\InvoiceLine;
+use App\Models\Sale;
+use App\Models\Receiving;
 
 Class Invoice
 {
@@ -33,7 +33,7 @@ Class Invoice
         $this->invoice->number = $this->getNextNumber(1);
         $sale = Sale::find($id);
         $this->invoice->ordertable_id = $sale->id;
-        $this->invoice->ordertable_type = \yapos2\Models\Invoice::class;
+        $this->invoice->ordertable_type = \App\Models\Invoice::class;
         foreach ($sale->items->all() as $line) {
           $this->addLine( $line->quantity, $line->price, $line->item->name, $line->item_id);
         }

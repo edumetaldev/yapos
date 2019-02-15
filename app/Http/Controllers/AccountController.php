@@ -1,8 +1,8 @@
 <?php
 
-namespace yapos2\Http\Controllers;
+namespace App\Http\Controllers;
 
-use yapos2\Account;
+use App\Account;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -41,7 +41,7 @@ class AccountController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \yapos2\Account  $account
+     * @param  \App\Account  $account
      * @return \Illuminate\Http\Response
      */
     public function show(Account $account)
@@ -52,7 +52,7 @@ class AccountController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \yapos2\Account  $account
+     * @param  \App\Account  $account
      * @return \Illuminate\Http\Response
      */
     public function edit(Account $account)
@@ -64,7 +64,7 @@ class AccountController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \yapos2\Account  $account
+     * @param  \App\Account  $account
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Account $account)
@@ -75,7 +75,7 @@ class AccountController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \yapos2\Account  $account
+     * @param  \App\Account  $account
      * @return \Illuminate\Http\Response
      */
     public function destroy(Account $account)
