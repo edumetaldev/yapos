@@ -36,6 +36,6 @@ class CreateInvoiceLinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoice_line_items');
+        Schema::dropIfExists('invoice_lines');
     }
 }

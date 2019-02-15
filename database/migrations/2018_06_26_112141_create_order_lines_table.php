@@ -25,8 +25,7 @@ class CreateOrderLinesTable extends Migration
             $table->timestamps();
 
             $table->foreign('item_id')->references('id')->on('items');
-            $table->foreign('invoice_id')->references('id')->on('invoices');
-            
+
         });
     }
 

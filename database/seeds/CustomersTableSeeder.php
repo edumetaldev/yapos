@@ -11,10 +11,10 @@ class CustomersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(yapos2\Models\Customer::class, 1)->create([
+        factory(App\Models\Customer::class, 1)->create([
           'name' => 'anonymous customer',
         ]);
-        factory(yapos2\Models\Customer::class, 10)->create();
+        factory(App\Models\Customer::class, 10)->create();
 
     }
 }

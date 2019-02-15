@@ -11,7 +11,7 @@ class ReceivingsTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(yapos2\Models\Receiving::class, 15)
+      factory(App\Models\Receiving::class, 15)
       ->create()
       ->each(function ($u) {
         $rand =  rand ( 3, 15 );

@@ -11,12 +11,12 @@ class SalesTableSeeder extends Seeder
      */
     public function run()
     {
-      factory(yapos2\Models\Sale::class, 15)
+      factory(App\Models\Sale::class, 15)
       ->create()
       ->each(function ($u) {
         $rand =  rand ( 3, 15 );
         for ($i=0;$i < $rand ;$i++){
-          $u->items()->save($item = factory(yapos2\Models\SaleItem::class)->make());
+          $u->items()->save($item = factory(App\Models\SaleItem::class)->make());
 
           $u->update(['amount'=> $u->amount + $item->subtotal]);
         }
