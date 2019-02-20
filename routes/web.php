@@ -17,7 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
 Route::group(['middleware' => ['auth']], function () {
   Route::get('/home', 'HomeController@index')->name('home');
 
@@ -35,5 +34,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::resource('invoices', 'InvoiceController');
   Route::get('sales/{order_id}/makeinvoice','SaleController@makeInvoice');
   Route::get('receivings/{order_id}/makeinvoice','ReceivingController@makeInvoice'); // TODO: cambiar a ORDER
+  //Route::resource('users', '\Cobierto\Acl\Controllers\UserController');
+  //Route::resource('roles', '\Cobierto\Acl\Controllers\RoleController');
 
 });
