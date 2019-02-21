@@ -18,7 +18,7 @@ class ItemController extends Controller
       $query = $request->input('query');
       $options =  $request->input('options');
       return item::ofSearch($query)
-      ->select(['id','upc_ean_isbn','name','description','selling_price','quantity','cost_price'])
+      ->select(['id','upc_ean_isbn','name','description','selling_price','quantity','cost_price','reorder_level'])
       ->ofOption($options)
       ->paginate(25)->appends(['query' => $query]);
     }

@@ -21,6 +21,7 @@
           <div class="list-group">
             <a href="#" class="list-group-item">
               <h1 class="list-group-item-heading"> @{{ item.selling_price | money_format }}</h1>
+              <h3>@{{ item.upc_ean_isbn }}</h3>
               <h4 class="list-group-item-text"> @{{ item.name }}</h4>
             </a>
           </div>
@@ -63,6 +64,30 @@ var vm =  new Vue({
     }
   }
 });
+
+    (function() {
+        var query = document.getElementById('query');
+        var barcode = document.getElementById('barcode');
+        var search = document.getElementById('search');
+
+        query.addEventListener('keypress', function(event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                if (query.value != "") {
+                    search.click();
+                }
+            }
+        });
+
+        barcode.addEventListener('keypress', function(event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                if (query.value != "") {
+                    search.click();
+                }
+            }
+        });
+    }());
 
 </script>
 

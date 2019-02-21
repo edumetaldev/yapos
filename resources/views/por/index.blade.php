@@ -3,41 +3,43 @@
 @section('title',__('Point of Receinvings'))
 
 @section('body')
-
   <div id="app">
-
-    <form method="POST" action="{{url('por')}}" >
-          <div class="row">
-                {{ csrf_field() }}
-              <div class="form-group col-md-6">
-                <label class="form-label" for="query">@lang('Supplier'):</label>
-                <select class="form-control custom-select mb-3" name="supplier"  required>
-                    <option>Selección requerida</option>
+    <form method="POST" action="{{url('por')}}" id="por">
+      <div class="row">
+            {{ csrf_field() }}
+          <div class="form-group col-md-6">
+            <label class="form-label" for="query">@lang('Supplier'):</label>
+            <select class="form-control custom-select mb-3" name="supplier"  required>
+                 <option disabled value="">Please select one</option>
                 @foreach($suppliers as $supplier)
                   <option value="{{ $supplier->id}}">{{$supplier->name}}</option>
                 @endforeach
-                </select>
-              </div>
-              <button id="end" type="submit" class="btn btn-success pull-right">@lang('End Reception')</button>
+            </select>
+          </div>
+          <button id="end" type="submit" class="btn btn-success pull-right">@lang('End Reception')</button>
+      </div>
+
+      <div class="row">
+          <div class=" col-xs-12 col-md-4">
+              <!-- Add Item form -->
+                  @include('layouts.parts.field_search')
+                  @include('layouts.parts.item_select_field')
+                  <label class="form-label">@lang('Quantity'):  @lang('Price'): </label>
+                  <div class="input-group input-group-lg">
+                      <input class="form-control input-lg" step=".01" id="quantity" type="number" name="quantity" v-model="new_car_item.quantity">
+                      <input class="form-control input-lg" step=".01" id="cost_price" type="number" name="cost_price" v-model="new_car_item.cost_price">
+                      <span class="input-group-btn">
+                          <button id="add" type="button" class="btn" :disabled="(new_car_item.quantity < 1 || selected.id < 1)" @click="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                      </span>
+                  </div>
+
+              <!-- END Add Item form -->
+          </div>
+          <div class=" col-xs-12 col-md-8">
+              @include('layouts.parts.cart_table')
           </div>
 
-          <div class="row">
-              <div class=" col-xs-12 col-md-4">
-                  <!-- Add Item form -->
-                      @include('layouts.parts.field_search')
-                      @include('layouts.parts.item_select_field')
-                      <label class="form-label">@lang('Quantity'):</label>
-                      <div class="form-inline">
-                        <input class="form-control" id="quantity" type="number" name="quantity" v-model="new_car_item.quantity" style="width: 5em;" >
-                        <button id="add" type="button" class="btn" :disabled="(new_car_item.quantity < 1 || selected.id < 1)" @click="add()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                      </div>
-                  <!-- END Add Item form -->
-              </div>
-              <div class=" col-xs-12 col-md-8">
-                  @include('layouts.parts.cart_table')
-              </div>
-
-          </div>
+      </div>
 
     </form>
   </div> <!-- app -->
@@ -87,21 +89,19 @@ var vm =  new Vue({
   el: "#app",
   data: {
       car_items: [],
-      new_car_item:
-              {
-                id: 0,
-                upc_ean_isbn: '',
-                name: '',
-                description: '',
-                quantity: 1,
-                selling_price: 0,
-                cost_price: 0,
-                subtotal: 0
-              },
+      new_car_item: {
+        id: 0,
+        upc_ean_isbn: '',
+        name: '',
+        description: '',
+        quantity: 1,
+        selling_price: 0,
+        cost_price: 0,
+        subtotal: 0
+      },
       items: [],
-      selected: { id: 0, quantity: 1, subtotal: 0 },
+      selected: [],
       query: '',
-      quantity: 1,
   },
   methods:{
     getItems: function (query,page){
@@ -116,14 +116,20 @@ var vm =  new Vue({
           this.items = [];
        });
     },
+    onChange: function(){
+        this.new_car_item = {
+          id: this.selected.id,
+          upc_ean_isbn: this.selected.upc_ean_isbn,
+          name: this.selected.name,
+          quantity: this.selected.reorder_level, // quantity = reorder_level default
+          selling_price: this.selected.selling_price,
+          cost_price: this.selected.cost_price,
+          subtotal: 0
+        }
+    },
     add: function(){
-      this.new_car_item.id = this.selected.id
-      this.new_car_item.name = this.selected.name;
-      this.new_car_item.cost_price = this.selected.cost_price;
-      this.new_car_item.upc_ean_isbn = this.selected.upc_ean_isbn;
-
-      this.car_items.push(this.new_car_item);
-      this.selected =  { id: 0, quantity: 1, subtotal: 0 };
+      this.car_items.push( this.new_car_item );
+      this.selected =  [];
       this.query =  '';
       this.items =  [];
       this.new_car_item = {
@@ -156,6 +162,7 @@ var vm =  new Vue({
     (function() {
         var query = document.getElementById('query');
         var quantity = document.getElementById('quantity');
+        var cost_price = document.getElementById('cost_price');
 
         query.addEventListener('keypress', function(event) {
             if (event.keyCode == 13) {
@@ -183,7 +190,16 @@ var vm =  new Vue({
         quantity.addEventListener('keypress', function(event) {
             if (event.keyCode == 13) {
                 event.preventDefault();
-                if (quantity.value > 1) {
+                if (quantity.value > 0) {
+                    cost_price.select();
+                }
+            }
+        });
+
+        cost_price.addEventListener('keypress', function(event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                if (cost_price.value > -1) {
                     document.getElementById('add').click();
                     query.focus();
                 }
@@ -192,5 +208,12 @@ var vm =  new Vue({
 
     }());
 
+    $('#por').on('keyup keypress', function(e) {
+      var keyCode = e.keyCode || e.which;
+      if (keyCode === 13) {
+        e.preventDefault();
+        return false;
+      }
+    });
 </script>
 @endsection
