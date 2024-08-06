@@ -6,7 +6,7 @@ Yet anoter Pos of Sale. Punto de Venta, Inventarios. Clientes, Proveedores. Pane
   
 *Tecnologías:* PHP Laravel Mariadb Javascript Vue Js HTML CSS MySQL Bootstrap AJAX API REST  
 
-##Instalación
+## Instalación
   
 composer install  
   
