@@ -1,4 +1,5 @@
-#YAPOS
+# YAPOS
+  
 Yet anoter Pos of Sale. Punto de Venta, Inventarios. Clientes, Proveedores. Panel de Control
   
 Actores: Vendedor, Administradores
